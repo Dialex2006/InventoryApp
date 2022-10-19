@@ -23,7 +23,6 @@ const Welcome = (props: any) => {
           <span>To start using the App, please login</span>
         </header>
       </div>
-
       <button onClick={showModalHandler}>Login to use the App</button>
       {showModal && (
         <Modal onCancel={cancelModalHandler} onConfirm={cancelModalHandler} />

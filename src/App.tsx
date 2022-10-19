@@ -12,7 +12,7 @@ function App() {
     <div>
       <MainNavigation />
       <Switch>
-        <Route path="/ exact">
+        <Route path="/">
           <Welcome />
         </Route>
         <Route path="/form"></Route>
