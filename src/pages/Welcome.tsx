@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Modal from "../features/Modal";
 import Backdrop from "../features/Backdrop";
-import logo from "../logo.svg";
 import "../components/Components.css";
 
 const Welcome = (props: any) => {
