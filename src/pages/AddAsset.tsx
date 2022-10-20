@@ -2,8 +2,9 @@ import React from "react";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import "../components/Components.css";
+import ApiConfig from "../config/api-config";
 
-const AddAsset = (props: any) => {
+const AddAsset = () => {
   console.log("Form page");
   const history = useHistory();
   const assetTypeRef = React.useRef<HTMLSelectElement>(null);
@@ -13,18 +14,16 @@ const AddAsset = (props: any) => {
   const serialRef = React.useRef<HTMLTextAreaElement>(null);
   const dateRef = React.useRef<HTMLInputElement>(null);
 
+  // TODO: use redux instead of plain call here
   const addData = async (route: any) => {
     console.log(route);
-    const response = await fetch(
-      "https://inventoryapp-6e44e-default-rtdb.europe-west1.firebasedatabase.app/inventory.json",
-      {
-        method: "POST",
-        body: JSON.stringify(route),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${ApiConfig.BASE_URL}/inventory.json`, {
+      method: "POST",
+      body: JSON.stringify(route),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await response.json();
     console.log(data);
     history.push("/");
