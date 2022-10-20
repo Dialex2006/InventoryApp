@@ -14,7 +14,7 @@ const MainNavigation = () => {
             <Link to="/inventory">List of inventory</Link>
           </li>
           <li>
-            <Link to="/form">Add a new item</Link>
+            <Link to="/add">Add a new asset</Link>
           </li>
         </ul>
       </nav>

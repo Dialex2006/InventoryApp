@@ -1,0 +1,59 @@
+.text {
+  color: #1238d2;
+  text-align: center;
+  padding: 8px;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-top: 10px;
+}
+
+.selection {
+  color: #000000;
+  background-color: aquamarine;
+  align-content: center;
+  padding: 8px;
+  margin: 0px 0px 40px 0px;
+  width: 180px;
+  border-radius: 10px;
+}
+
+.textField {
+  color: #000000;
+  background-color: aquamarine;
+  text-align: center;
+  width: 180px;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.button {
+  color: #ffffff;
+  background-color: rgb(10, 146, 148);
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 20px;
+  width: 180px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.form {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.inline {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.inlineName {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+}

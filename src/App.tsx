@@ -4,6 +4,7 @@ import { useState } from "react";
 import Welcome from "./pages/Welcome";
 import "./App.css";
 import MainNavigation from "./features/MainNavigation";
+import AddAsset from "./pages/AddAsset";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -16,10 +17,12 @@ function App() {
     <div>
       <MainNavigation />
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
           <Welcome whenLoggedIn={whenLoggedIn} />
         </Route>
-        <Route path="/form"></Route>
+        <Route path="/add">
+          <AddAsset />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
