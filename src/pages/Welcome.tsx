@@ -3,7 +3,12 @@ import Modal from "../components/auth/LoginModal";
 import Backdrop from "../components/general/Backdrop";
 import "../components/Components.css";
 
-const Welcome = (props: any) => {
+// TODO: get rid of props in the pages later
+interface WelcomeProps {
+  whenLoggedIn: (loggedIn: boolean) => void;
+}
+
+const Welcome = (props: WelcomeProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => {

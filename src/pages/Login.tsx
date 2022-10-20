@@ -3,7 +3,12 @@ import { useState } from "react";
 import Modal from "../components/auth/LoginModal";
 import Backdrop from "../components/general/Backdrop";
 
-const Login = (props: any) => {
+// TODO: get rid of props in the pages later
+interface LoginProps {
+  whenLoggedIn: (loggedIn: boolean) => void;
+}
+
+const Login = (props: LoginProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => {

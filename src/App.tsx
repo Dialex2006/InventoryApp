@@ -1,8 +1,8 @@
+import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import { useState } from "react";
 import Welcome from "./pages/Welcome";
-import "./App.css";
 import MainNavigation from "./components/navigation/MainNavigation";
 import AddAsset from "./pages/AddAsset";
 
@@ -13,6 +13,7 @@ function App() {
     setLoggedIn(status);
   };
 
+  // TODO: get rid of props in the pages later
   const content = loggedIn ? (
     <div>
       <MainNavigation />
@@ -24,7 +25,7 @@ function App() {
           <AddAsset />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login whenLoggedIn={whenLoggedIn} />
         </Route>
       </Switch>
     </div>

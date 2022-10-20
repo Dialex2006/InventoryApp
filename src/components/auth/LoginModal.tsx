@@ -1,6 +1,12 @@
-import LoginForm from "./loginForm";
+import LoginForm from "./LoginForm";
 
-const Modal = (props: any) => {
+interface ModalProps {
+  whenLoggedIn: (loggedIn: boolean) => void;
+  onCancel?: () => void;
+  onConfirm?: () => void;
+}
+
+const Modal = (props: ModalProps) => {
   console.log("In Modal");
 
   return (
