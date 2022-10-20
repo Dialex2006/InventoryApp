@@ -1,19 +1,23 @@
 import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import React from "react";
+import { useState } from "react";
 import Welcome from "./pages/Welcome";
 import "./App.css";
 import MainNavigation from "./features/MainNavigation";
 
 function App() {
-  let loggedIn = true;
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  return (
+  const whenLoggedIn = (status: boolean) => {
+    setLoggedIn(status);
+  };
+
+  const content = loggedIn ? (
     <div>
       <MainNavigation />
       <Switch>
         <Route path="/">
-          <Welcome />
+          <Welcome whenLoggedIn={whenLoggedIn} />
         </Route>
         <Route path="/form"></Route>
         <Route path="/login">
@@ -21,7 +25,13 @@ function App() {
         </Route>
       </Switch>
     </div>
+  ) : (
+    <div>
+      <Login whenLoggedIn={whenLoggedIn} />
+    </div>
   );
+
+  return <div>{content}</div>;
 }
 
 export default App;

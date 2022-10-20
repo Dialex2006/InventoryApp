@@ -15,17 +15,25 @@ const Welcome = (props: any) => {
     setShowModal(false);
   };
 
+  const logout = () => {
+    props.whenLoggedIn(false);
+  };
+
   return (
     <div className="main-align">
       <div className="App">
         <header className="App-header">
           <p>Welcome to Inventory App.</p>
-          <span>To start using the App, please login</span>
+          <span>Currently you're logged in as "Superadmin"</span>
         </header>
       </div>
-      <button onClick={showModalHandler}>Login to use the App</button>
+      <button onClick={logout}>Logout</button>
       {showModal && (
-        <Modal onCancel={cancelModalHandler} onConfirm={cancelModalHandler} />
+        <Modal
+          whenLoggedIn={props.whenLoggedIn}
+          onCancel={cancelModalHandler}
+          onConfirm={cancelModalHandler}
+        />
       )}
       {showModal ? <Backdrop onCancel={cancelModalHandler} /> : null}
     </div>

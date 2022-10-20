@@ -1,34 +1,36 @@
+import { useState } from "react";
+import Modal from "../features/Modal";
+import Backdrop from "../features/Backdrop";
 import React from "react";
 
 const Login = (props: any) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const cancelModalHandler = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className="Auth-form-container">
-      <form className="Auth-form">
-        <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
-          <div className="form-group mt-3">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control mt-1"
-              placeholder="Enter email"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control mt-1"
-              placeholder="Enter password"
-            />
-          </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
+    <div className="main-align">
+      <div className="App">
+        <header className="App-header">
+          <p>Welcome to Inventory App.</p>
+          <span>To start using the App, please login</span>
+        </header>
+      </div>
+      <button onClick={showModalHandler}>Login to use the App</button>
+      {showModal && (
+        <Modal
+          whenLoggedIn={props.whenLoggedIn}
+          onCancel={cancelModalHandler}
+          onConfirm={cancelModalHandler}
+        />
+      )}
+      {showModal ? <Backdrop onCancel={cancelModalHandler} /> : null}
     </div>
   );
 };
