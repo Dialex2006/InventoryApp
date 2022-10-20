@@ -5,22 +5,18 @@ import createSagaMiddleware from "redux-saga";
 
 import sagas from "./sagas";
 import { appReducer } from "./reducers";
+import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import persistReducer from "redux-persist/es/persistReducer";
 import * as loginActions from "./actions/loginActions";
 import { apiClient } from "../services/client";
 
-const config = {
+const config: any = {
   key: "root",
-  // TODO: add an appropriate storage
-  //   storage: AsyncStorage,
+  storage: storage,
   blacklist: [
     "loginReducer",
-    "loadingReducer",
-    "barcodeReducer",
-    "photoReducer",
-    "locationReducer",
-    "ccReducer",
+    // "loadingReducer",
   ],
   debug: true, // to get useful logging
   stateReconciler: autoMergeLevel2,
@@ -55,9 +51,10 @@ const reducers = persistReducer(config, rootReducer);
 const enhancers = [applyMiddleware(...middleware)];
 // const initialState = {};
 const persistConfig: any = { enhancers };
-const store = createStore(reducers, undefined, compose(...enhancers));
+
+const store = createStore(reducers, undefined, compose<any>(...enhancers));
 const persistor = persistStore(store, persistConfig, () => {
-  //   console.log('Test', store.getState());
+  console.log("Test", store.getState());
 });
 const configureStore = () => {
   return { persistor, store };
@@ -67,7 +64,7 @@ sagaMiddleware.run(sagas);
 
 const { dispatch } = store;
 
-apiClient.interceptors.response.use(undefined, (err) => {
+apiClient.interceptors.response.use(undefined, (err: any) => {
   const error = err.response;
   // if error is 401, emit logout action
   if (error.status === 401 && error.config && !error.config.__isRetryRequest) {
