@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import { useState } from "react";
 import Welcome from "./pages/Welcome";
 import "./App.css";
-import MainNavigation from "./features/MainNavigation";
+import MainNavigation from "./components/navigation/MainNavigation";
 import AddAsset from "./pages/AddAsset";
 
 function App() {

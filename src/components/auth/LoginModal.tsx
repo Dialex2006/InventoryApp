@@ -1,4 +1,4 @@
-import LoginForm from "./auth/loginForm";
+import LoginForm from "./loginForm";
 
 const Modal = (props: any) => {
   console.log("In Modal");

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Modal from "../features/Modal";
-import Backdrop from "../features/Backdrop";
 import React from "react";
+import { useState } from "react";
+import Modal from "../components/auth/LoginModal";
+import Backdrop from "../components/general/Backdrop";
 
 const Login = (props: any) => {
   const [showModal, setShowModal] = useState(false);

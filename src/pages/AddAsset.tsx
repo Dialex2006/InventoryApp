@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
-import "./Components.css";
+import "../components/Components.css";
 
 const AddAsset = (props: any) => {
   console.log("Form page");
