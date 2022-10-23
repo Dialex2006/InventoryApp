@@ -12,8 +12,8 @@
   background-color: aquamarine;
   align-content: center;
   padding: 8px;
-  margin: 0px 0px 40px 0px;
-  width: 180px;
+  margin: 0px 0px 20px 0px;
+  width: 250px;
   border-radius: 10px;
 }
 
@@ -21,10 +21,11 @@
   color: #000000;
   background-color: aquamarine;
   text-align: center;
-  width: 180px;
+  width: 250px;
   padding: 8px;
   border-radius: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  height: 35px;
 }
 
 .button {
@@ -36,7 +37,7 @@
   font-size: 14px;
   font-weight: 900;
   border-radius: 20px;
-  width: 130px;
+  width: 180px;
   margin: 5px;
   cursor: pointer;
 }

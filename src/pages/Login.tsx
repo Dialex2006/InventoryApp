@@ -23,11 +23,13 @@ const Login = (props: LoginProps) => {
     <div className="main-align">
       <div className="App">
         <header className="App-header">
-          <p>Welcome to Inventory App.</p>
+          <p>Welcome to Inventory App</p>
           <span>To start using the App, please login</span>
         </header>
       </div>
-      <button onClick={showModalHandler}>Login to use the App</button>
+      <button onClick={showModalHandler} className="btn btn-primary">
+        Login to use the App
+      </button>
       {showModal && (
         <Modal
           whenLoggedIn={props.whenLoggedIn}

@@ -27,11 +27,13 @@ const Welcome = (props: WelcomeProps) => {
     <div className="main-align">
       <div className="App">
         <header className="App-header">
-          <p>Welcome to Inventory App.</p>
+          <p>Welcome to Inventory App</p>
           <span>Currently you're logged in as "Superadmin"</span>
         </header>
       </div>
-      <button onClick={logout}>Logout</button>
+      <button onClick={logout} className="btn btn-primary">
+        Logout
+      </button>
       {showModal && (
         <Modal
           whenLoggedIn={props.whenLoggedIn}

@@ -1,5 +1,4 @@
 import React from "react";
-import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import "../components/Components.css";
 import ApiConfig from "../config/api-config";
@@ -109,7 +108,7 @@ const AddAsset = () => {
         <div>
           <input
             className="textField"
-            placeholder="Route number"
+            placeholder="Date"
             type="date"
             id="date"
             ref={dateRef}

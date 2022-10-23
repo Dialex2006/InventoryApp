@@ -1,13 +1,13 @@
 import { FormEvent } from "react";
 import "./styles.css";
 
-interface LoginFormProps {
+interface RegFormProps {
   whenLoggedIn: (loggedIn: boolean) => void;
   onCancel?: () => void;
   changeScreen?: () => void;
 }
 
-function LoginForm(props: LoginFormProps) {
+function RegForm(props: RegFormProps) {
   function onSubmit(e: FormEvent): void {
     e.preventDefault();
   }
@@ -21,9 +21,11 @@ function LoginForm(props: LoginFormProps) {
       <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
+            <h3 className="Auth-form-title">Register a new user</h3>
             <div className="login-fields">
-              <label className="labels">Username &nbsp;&nbsp;&nbsp;</label>
+              <label className="labels">
+                Create username &nbsp;&nbsp;&nbsp;
+              </label>
               <input
                 type="email"
                 className="input-fields"
@@ -31,7 +33,9 @@ function LoginForm(props: LoginFormProps) {
               />
             </div>
             <div className="login-fields">
-              <label className="labels">Password &nbsp;&nbsp;&nbsp;</label>
+              <label className="labels">
+                Create password &nbsp;&nbsp;&nbsp;
+              </label>
               <input
                 type="password"
                 className="input-fields"
@@ -43,9 +47,9 @@ function LoginForm(props: LoginFormProps) {
 
           <div className="center-labels">
             <label className="">
-              Don't have an account yet?{" "}
+              Switch back to{" "}
               <span className="onText" onClick={props.changeScreen}>
-                Register here
+                Signin
               </span>
             </label>
           </div>
@@ -63,4 +67,4 @@ function LoginForm(props: LoginFormProps) {
   );
 }
 
-export default LoginForm;
+export default RegForm;
