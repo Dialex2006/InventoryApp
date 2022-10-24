@@ -18,14 +18,14 @@ function LoginForm(props: LoginFormProps) {
 
   return (
     <div className="modal">
-      <div className="Auth-form-container">
-        <form className="Auth-form">
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
+      <div>
+        <form>
+          <div>
+            <h3>Sign In</h3>
             <div className="login-fields">
               <label className="labels">Username &nbsp;&nbsp;&nbsp;</label>
               <input
-                type="email"
+                type="text"
                 className="input-fields"
                 placeholder="Enter username"
               />
@@ -38,9 +38,8 @@ function LoginForm(props: LoginFormProps) {
                 placeholder="Enter password"
               />
             </div>
-            <div className="d-grid gap-2 mt-3"></div>
           </div>
-
+          <div className="center-labels"></div>
           <div className="center-labels">
             <label className="">
               Don't have an account yet?{" "}
@@ -51,7 +50,7 @@ function LoginForm(props: LoginFormProps) {
           </div>
         </form>
       </div>
-      <div className="login-fields"></div>
+      <div className="created-account-insert"></div>
       <button onClick={props.onCancel} className="btn btn--alt">
         Cancel
       </button>
