@@ -1,5 +1,5 @@
 .text {
-  color: #1238d2;
+  color: #f4ddc8;
   text-align: center;
   padding: 8px;
   font-size: 20px;
@@ -8,8 +8,8 @@
 }
 
 .selection {
-  color: #000000;
-  background-color: aquamarine;
+  color: #f4ddc8;
+  background-color: #55111d;
   align-content: center;
   padding: 8px;
   margin: 0px 0px 20px 0px;
@@ -18,19 +18,26 @@
 }
 
 .textField {
-  color: #000000;
-  background-color: aquamarine;
+  color: #f2e0cf;
+  background-color: #55111d;
   text-align: center;
   width: 250px;
   padding: 8px;
   border-radius: 10px;
   margin-bottom: 20px;
   height: 35px;
+  color-scheme: dark;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #f2e0cf;
+  opacity: 1; /* Firefox */
 }
 
 .button {
-  color: #ffffff;
-  background-color: rgb(10, 146, 148);
+  color: #f2e0cf;
+  background-color: #55111d;
   text-align: center;
   padding: 5px;
   border-radius: 10px;
