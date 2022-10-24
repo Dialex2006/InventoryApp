@@ -25,9 +25,30 @@
   margin-bottom: 5px;
 }
 
+.input-fields::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: rgb(99, 98, 99);
+}
+
+.input-fields:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgb(99, 98, 99);
+  opacity: 1;
+}
+.input-fields::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgb(99, 98, 99);
+  opacity: 1;
+}
+.input-fields:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(99, 98, 99);
+}
+
 .labels {
   width: 170px;
   text-align: left;
+  color: rgb(31, 22, 22);
 }
 
 .onText {

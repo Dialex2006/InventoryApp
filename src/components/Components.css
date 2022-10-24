@@ -30,9 +30,7 @@
 }
 
 ::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #f2e0cf;
-  opacity: 1; /* Firefox */
 }
 
 .button {
