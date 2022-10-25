@@ -1,4 +1,6 @@
-// TODO: placeholder, replace with an appropriate structure when ready
+// We are sorry, this authentication sucks...
+
+import { ILoginResponse } from "../api/login";
 
 export interface ILoginRequestState {
   type: string;
@@ -6,13 +8,7 @@ export interface ILoginRequestState {
   password: string;
 }
 
-interface IResponse {
-  status: string;
-  data: Record<string, string>;
-}
-
 export interface ILoginResponseState {
   type: string;
-  username: string;
-  response: IResponse;
+  response: ILoginResponse;
 }

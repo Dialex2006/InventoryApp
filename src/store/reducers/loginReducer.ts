@@ -1,7 +1,7 @@
 /* Login Reducer
  * handles login states in the app
  */
-import createReducer from "../../app/createReducer";
+import createReducer from "../../lib/createReducer";
 import * as types from "../actions/types";
 
 import { ILoginState } from "../../models/reducers/login";
@@ -13,7 +13,6 @@ import {
 const initialState: ILoginState = {
   isLoggedIn: false,
   username: "",
-  jwt: "",
 };
 
 export const loginReducer = createReducer(initialState, {
@@ -30,9 +29,8 @@ export const loginReducer = createReducer(initialState, {
   [types.LOGIN_RESPONSE](state: ILoginState, action: ILoginResponseState) {
     return {
       ...state,
-      status: action.response.status,
-      jwt: action.response.data.jwt,
-      username: action.username,
+      // TODO: make sense of this
+    //   username: Object.values(action.response).,
       isLoggedIn: true,
     };
   },
