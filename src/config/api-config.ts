@@ -10,6 +10,7 @@ const ApiConfig = {
   INVENTORY: "/inventory.json",
   // POST
   REGISTER: "/authenticationData.json",
+  ADD_ASSET: "/inventory.json",
 };
 
 export default ApiConfig;

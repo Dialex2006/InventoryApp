@@ -1,51 +1,43 @@
 import { FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import React from "react";
+
+import * as authActions from "../../store/actions/authActions";
+
 import "./styles.css";
-import ApiConfig from "../../config/api-config";
 
 interface RegFormProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
   onCancel?: () => void;
   changeScreen?: () => void;
 }
 
-function RegForm(props: RegFormProps) {
+const RegForm = (props: RegFormProps) => {
+  const dispatch = useDispatch();
+
   const usernameRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
   const [afterCreating, setAfterCreating] = useState("");
 
-  // TODO: use redux instead of plain call here
-  const addData = async (route: any) => {
-    console.log(route);
-    const response = await fetch(
-      `${ApiConfig.BASE_URL}/authenticationData.json`,
-      {
-        method: "POST",
-        body: JSON.stringify(route),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-  };
-
-  function onSubmit(e: FormEvent): void {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(usernameRef.current?.value);
-    console.log(passwordRef.current?.value);
-
-    const formData = {
-      username: usernameRef.current?.value,
-      password: passwordRef.current?.value,
-    };
-
-    addData(formData);
-    setAfterCreating("User account has been created! You can sign in now");
-  }
+    if (
+      usernameRef.current?.value !== undefined &&
+      passwordRef.current?.value !== undefined
+    ) {
+      dispatch(
+        authActions.requestRegistration(
+          usernameRef.current?.value,
+          passwordRef.current?.value
+        )
+      );
+      // Not a good way, but works of course. Better to
+      // 1) have a notification fired in saga as soon as registration call completes successfully
+      // 2) or use isJustRegistered value in the store
+      setAfterCreating("User account has been created! You can sign in now");
+    }
+  };
 
   return (
     <div className="modal">
@@ -97,6 +89,6 @@ function RegForm(props: RegFormProps) {
       </button>
     </div>
   );
-}
+};
 
 export default RegForm;

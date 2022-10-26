@@ -1,30 +1,26 @@
-import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as loginActions from "../store/actions/loginActions";
+import { ILoadingState } from "../models/reducers/loading";
+
 import Modal from "../components/auth/LoginModal";
 import Backdrop from "../components/general/Backdrop";
-import { ILoadingState } from "../models/reducers/loading";
+
+import * as authActions from "../store/actions/authActions";
 
 interface ILoading {
   loadingReducer: ILoadingState;
 }
 
-// TODO: get rid of props in the pages later
-interface LoginProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
-}
-
-const Login = (props: LoginProps) => {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
+  // TODO: use this value to show that we're logging in (e.g., gif/progress bar/simple text)
   const isLoginLoading = useSelector(
     (state: ILoading) => state.loadingReducer.isLoginLoading
   );
 
-  console.log(`isLoginLoading status:${isLoginLoading}`);
-  const onLogin = () => dispatch(loginActions.requestLogin("someuser", "pass"));
+  const onLogin = () => dispatch(authActions.requestLogin("someuser", "pass"));
 
   const showModalHandler = () => {
     setShowModal(true);
@@ -47,11 +43,7 @@ const Login = (props: LoginProps) => {
         Login to use the App
       </button>
       {showModal && (
-        <Modal
-          whenLoggedIn={props.whenLoggedIn}
-          onCancel={cancelModalHandler}
-          onConfirm={cancelModalHandler}
-        />
+        <Modal onCancel={cancelModalHandler} onConfirm={cancelModalHandler} />
       )}
       {showModal ? <Backdrop onCancel={cancelModalHandler} /> : null}
     </div>

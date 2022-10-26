@@ -1,11 +1,40 @@
-/*
- * Reducer actions related to login
- */
+/* Reducer actions related to authentication */
+
+import { ILoginResponse } from "../../models/api/auth";
+
 import * as types from "./types";
-import { ILoginResponse } from "../../models/api/login";
 
 /**
- * @brief Triggers loginSaga saga. `Login` endpoint.
+ * @brief Triggers register saga. `Register` endpoint.
+ *
+ * @param username Username.
+ * @param password Plain text password.
+ */
+export function requestRegistration(username: string, password: string) {
+  return {
+    type: types.LOGIN_REQUEST,
+    username,
+    password,
+  };
+}
+
+export function registrationFailed() {
+  return {
+    type: types.REGISTRATION_FAILED,
+  };
+}
+
+/**
+ * @brief Saves response from `Register` endpoint call.
+ */
+export function onRegisterResponse() {
+  return {
+    type: types.REGISTRATION_RESPONSE,
+  };
+}
+
+/**
+ * @brief Triggers login saga. `Login` endpoint.
  *
  * @param username Username.
  * @param password Plain text password.

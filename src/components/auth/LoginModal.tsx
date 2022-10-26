@@ -1,9 +1,9 @@
-import LoginForm from "./LoginForm";
-import RegForm from "./RegForm";
 import { useState } from "react";
 
+import LoginForm from "./LoginForm";
+import RegForm from "./RegForm";
+
 interface ModalProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
   onCancel?: () => void;
   onConfirm?: () => void;
 }
@@ -15,22 +15,14 @@ const Modal = (props: ModalProps) => {
     setSwitchToRegistration(true);
   };
 
-  const changeToSignin = () => {
+  const changeToSignIn = () => {
     setSwitchToRegistration(false);
   };
 
   const content = switchToRegistration ? (
-    <RegForm
-      onCancel={props.onCancel}
-      whenLoggedIn={props.whenLoggedIn}
-      changeScreen={changeToSignin}
-    />
+    <RegForm onCancel={props.onCancel} changeScreen={changeToSignIn} />
   ) : (
-    <LoginForm
-      onCancel={props.onCancel}
-      whenLoggedIn={props.whenLoggedIn}
-      changeScreen={changeToRegistration}
-    />
+    <LoginForm onCancel={props.onCancel} changeScreen={changeToRegistration} />
   );
 
   return <div>{content}</div>;

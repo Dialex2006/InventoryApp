@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import Modal from "../components/auth/LoginModal";
 import Backdrop from "../components/general/Backdrop";
+
+import * as authActions from "../store/actions/authActions";
+
 import "../components/Components.css";
 
-// TODO: get rid of props in the pages later
-interface WelcomeProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
-}
-
-const Welcome = (props: WelcomeProps) => {
+const Welcome = () => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => {
@@ -20,7 +21,7 @@ const Welcome = (props: WelcomeProps) => {
   };
 
   const logout = () => {
-    props.whenLoggedIn(false);
+    dispatch(authActions.logOut());
   };
 
   return (
@@ -35,11 +36,7 @@ const Welcome = (props: WelcomeProps) => {
         Logout
       </button>
       {showModal && (
-        <Modal
-          whenLoggedIn={props.whenLoggedIn}
-          onCancel={cancelModalHandler}
-          onConfirm={cancelModalHandler}
-        />
+        <Modal onCancel={cancelModalHandler} onConfirm={cancelModalHandler} />
       )}
       {showModal ? <Backdrop onCancel={cancelModalHandler} /> : null}
     </div>

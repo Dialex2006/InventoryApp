@@ -1,10 +1,10 @@
-import React from "react";
-import App from "./App";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
+
+import App from "./App";
 import configureStore from "./store";
 
-const { persistor, store } = configureStore();
+const { store } = configureStore();
 
 test("renders learn react link", () => {
   const { getByText } = render(

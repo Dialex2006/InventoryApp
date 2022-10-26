@@ -1,9 +1,5 @@
 // export action creators
-import * as loginActions from "./loginActions";
-// import * as navigationActions from './navigationActions';
+import * as authActions from "./authActions";
+import * as inventoryActions from "./inventoryActions";
 
-export const ActionCreators = Object.assign(
-  {},
-  loginActions
-  //   navigationActions,
-);
+export const ActionCreators = Object.assign({}, authActions, inventoryActions);
