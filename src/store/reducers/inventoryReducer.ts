@@ -30,7 +30,7 @@ export const inventoryReducer = createReducer(initialState, {
     return {
       ...state,
       inventoryItems: Object.values(action.response).map(
-        (it) => it.category == action.filterCategory
+        (it) => it.category === action.filterCategory
       ),
     };
   },

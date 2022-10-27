@@ -8,8 +8,14 @@ import { put, call } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
 
 import * as inventoryActions from "../actions/inventoryActions";
-import { IAddAssetRequestState, IInventoryRequestState } from "../../models/actions/inventory";
-import { IAddAssetResponse, IInventoryResponse } from "../../models/api/inventory";
+import {
+  IAddAssetRequestState,
+  IInventoryRequestState,
+} from "../../models/actions/inventory";
+import {
+  IAddAssetResponse,
+  IInventoryResponse,
+} from "../../models/api/inventory";
 import { addAsset, getInventory } from "../../services/inventory";
 
 // Worker Saga that logins a user
@@ -44,17 +50,16 @@ export function* inventoryAsync(action: IInventoryRequestState) {
 export function* addAssetAsync(action: IAddAssetRequestState) {
   const response: AxiosResponse<IAddAssetResponse> = yield call(
     addAsset,
-    action.,
-    action.password
+    action.asset
   );
 
   if (response === undefined) {
-    yield put(authActions.registrationFailed());
+    yield put(inventoryActions.addAssetFailed());
     setTimeout(() => {
-      alert(`Registration failed: the response is null`);
+      alert(`Add asset failed: the response is null`);
     }, 200);
     return;
   } else {
-    yield put(authActions.onRegisterResponse());
+    yield put(inventoryActions.onAddAssetResponse());
   }
 }
