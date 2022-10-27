@@ -1,16 +1,14 @@
-import React from "react";
 import { useState } from "react";
+
 import Modal from "../components/auth/LoginModal";
 import Backdrop from "../components/general/Backdrop";
 
-// TODO: get rid of props in the pages later
-interface LoginProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
-}
-
-const Login = (props: LoginProps) => {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
-
+  // // TODO: use this value to show that we're logging in (e.g., gif/progress bar/simple text)
+  //   const isLoginLoading = useSelector(
+  //     (state: ILoading) => state.loadingReducer.isLoginLoading
+  //   );
   const showModalHandler = () => {
     setShowModal(true);
   };
@@ -31,11 +29,7 @@ const Login = (props: LoginProps) => {
         Login to use the App
       </button>
       {showModal && (
-        <Modal
-          whenLoggedIn={props.whenLoggedIn}
-          onCancel={cancelModalHandler}
-          onConfirm={cancelModalHandler}
-        />
+        <Modal onCancel={cancelModalHandler} onConfirm={cancelModalHandler} />
       )}
       {showModal ? <Backdrop onCancel={cancelModalHandler} /> : null}
     </div>

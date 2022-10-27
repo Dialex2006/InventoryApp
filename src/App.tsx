@@ -1,37 +1,42 @@
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IAuthState } from "./models/reducers/auth";
+
 import Login from "./pages/Login";
-import { useState } from "react";
 import Welcome from "./pages/Welcome";
 import MainNavigation from "./components/navigation/MainNavigation";
 import AddAsset from "./pages/AddAsset";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+import "./App.css";
 
-  const whenLoggedIn = (status: boolean) => {
-    setLoggedIn(status);
-  };
+interface IAuth {
+  authReducer: IAuthState;
+}
+
+function App() {
+  const isLoggedIn = useSelector(
+    (state: IAuth) => state.authReducer.isLoggedIn
+  );
 
   // TODO: get rid of props in the pages later
-  const content = loggedIn ? (
+  const content = isLoggedIn ? (
     <div>
       <MainNavigation />
       <Switch>
         <Route path="/" exact>
-          <Welcome whenLoggedIn={whenLoggedIn} />
+          <Welcome />
         </Route>
         <Route path="/add">
           <AddAsset />
         </Route>
         <Route path="/login">
-          <Login whenLoggedIn={whenLoggedIn} />
+          <Login />
         </Route>
       </Switch>
     </div>
   ) : (
     <div>
-      <Login whenLoggedIn={whenLoggedIn} />
+      <Login />
     </div>
   );
 

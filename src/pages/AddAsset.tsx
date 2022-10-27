@@ -1,10 +1,11 @@
-import React from "react";
 import { useHistory } from "react-router-dom";
-import "../components/Components.css";
+
+import React from "react";
 import ApiConfig from "../config/api-config";
 
+import "../components/Components.css";
+
 const AddAsset = () => {
-  console.log("Form page");
   const history = useHistory();
   const assetTypeRef = React.useRef<HTMLSelectElement>(null);
   const locationRef = React.useRef<HTMLSelectElement>(null);

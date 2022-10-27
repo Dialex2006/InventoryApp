@@ -1,19 +1,22 @@
 import { FormEvent } from "react";
+import { useDispatch } from "react-redux";
+
+import * as authActions from "../../store/actions/authActions";
+
 import "./styles.css";
 
 interface LoginFormProps {
-  whenLoggedIn: (loggedIn: boolean) => void;
   onCancel?: () => void;
   changeScreen?: () => void;
 }
 
-function LoginForm(props: LoginFormProps) {
-  function onSubmit(e: FormEvent): void {
-    e.preventDefault();
-  }
+const LoginForm = (props: LoginFormProps) => {
+  const dispatch = useDispatch();
 
-  const onSubmitForm = () => {
-    props.whenLoggedIn(true);
+  const onSubmitForm = (e: FormEvent) => {
+    e.preventDefault();
+    // TODO: @Dmitrii, use login form values in this function
+    dispatch(authActions.requestLogin("test1", "pwd"));
   };
 
   return (
@@ -60,6 +63,6 @@ function LoginForm(props: LoginFormProps) {
       </button>
     </div>
   );
-}
+};
 
 export default LoginForm;

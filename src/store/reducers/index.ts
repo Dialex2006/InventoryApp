@@ -1,12 +1,12 @@
-/*
- * Combines all the existing reducers
- */
+/* Combines all the existing reducers */
 
 import { combineReducers } from "redux";
-// import { loadingReducer } from "./loadingReducer";
-import { loginReducer } from "./loginReducer";
+import { authReducer } from "./authReducer";
+import { inventoryReducer } from "./inventoryReducer";
+import { loadingReducer } from "./loadingReducer";
 
 export const appReducer = combineReducers({
-  loginReducer: loginReducer,
-  //   loadingReducer: loadingReducer,
+  authReducer: authReducer,
+  inventoryReducer: inventoryReducer,
+  loadingReducer: loadingReducer,
 });

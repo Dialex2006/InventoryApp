@@ -1,21 +1,22 @@
 import { createStore, compose, applyMiddleware, AnyAction } from "redux";
 import { persistStore } from "redux-persist";
 import { createLogger } from "redux-logger";
-import createSagaMiddleware from "redux-saga";
-
-import sagas from "./sagas";
 import { appReducer } from "./reducers";
+import { apiClient } from "../services/client";
+
+import createSagaMiddleware from "redux-saga";
+import sagas from "./sagas";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import persistReducer from "redux-persist/es/persistReducer";
-import * as loginActions from "./actions/loginActions";
-import { apiClient } from "../services/client";
+
+import * as loginActions from "./actions/authActions";
 
 const config: any = {
   key: "root",
   storage: storage,
   blacklist: [
-    "loginReducer",
+    "authReducer",
     // "loadingReducer",
   ],
   debug: true, // to get useful logging
