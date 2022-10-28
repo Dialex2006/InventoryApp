@@ -1,10 +1,12 @@
 /* Inventory Reducer, handles login states in the app */
-import createReducer from "../../lib/createReducer";
+
 import {
   IInventoryRequestState,
   IInventoryResponseState,
 } from "../../models/actions/inventory";
 import { IInventoryState } from "../../models/reducers/inventory";
+
+import createReducer from "../../lib/createReducer";
 
 import * as types from "../actions/types";
 
@@ -29,7 +31,7 @@ export const inventoryReducer = createReducer(initialState, {
   ) {
     return {
       ...state,
-      inventoryItems: Object.values(action.response).map(
+      inventoryItems: Object.values(action.response).filter(
         (it) => it.category === action.filterCategory
       ),
     };
