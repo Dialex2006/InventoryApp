@@ -1,33 +1,22 @@
 import { useHistory } from "react-router-dom";
 
 import React from "react";
-import ApiConfig from "../config/api-config";
+
+import * as inventoryActions from "../store/actions/inventoryActions";
 
 import "../components/Components.css";
+import { useDispatch } from "react-redux";
 
 const AddAsset = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const assetTypeRef = React.useRef<HTMLSelectElement>(null);
   const locationRef = React.useRef<HTMLSelectElement>(null);
   const employeeRef = React.useRef<HTMLSelectElement>(null);
   const nameRef = React.useRef<HTMLTextAreaElement>(null);
   const serialRef = React.useRef<HTMLTextAreaElement>(null);
   const dateRef = React.useRef<HTMLInputElement>(null);
-
-  // TODO: use redux instead of plain call here
-  const addData = async (route: any) => {
-    console.log(route);
-    const response = await fetch(`${ApiConfig.BASE_URL}/inventory.json`, {
-      method: "POST",
-      body: JSON.stringify(route),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-    history.push("/");
-  };
 
   const submitHandler = (event: any) => {
     event.preventDefault();
@@ -36,16 +25,36 @@ const AddAsset = () => {
     console.log(serialRef.current?.value);
     console.log(assetTypeRef.current?.value);
 
-    const formData = {
-      category: assetTypeRef.current?.value,
-      user: employeeRef.current?.value,
-      location: locationRef.current?.value,
-      name: nameRef.current?.value,
-      serial: serialRef.current?.value,
-      date: dateRef.current?.value,
-    };
+    const category = assetTypeRef.current?.value;
+    const user = employeeRef.current?.value;
+    const location = locationRef.current?.value;
+    const name = nameRef.current?.value;
+    const serial = serialRef.current?.value;
+    const date = dateRef.current?.value;
+    const fallbackDate = new Date();
 
-    addData(formData);
+    if (category === undefined) {
+      alert("Category must not be empty!");
+    } else {
+      dispatch(
+        inventoryActions.requestAddAsset({
+          category: category,
+          user: user ?? `unknown`,
+          location: location ?? `unknown`,
+          name: name ?? `unknown`,
+          serial: serial ?? `unknown`,
+          date:
+            date ??
+            `${fallbackDate.getFullYear}-${String(
+              fallbackDate.getMonth() + 1
+            ).padStart(2, "0")}-${String(fallbackDate.getDate()).padStart(
+              2,
+              "0"
+            )}`,
+        })
+      );
+      history.push("/");
+    }
   };
 
   return (

@@ -12,7 +12,7 @@ import * as types from "./types";
  */
 export function requestRegistration(username: string, password: string) {
   return {
-    type: types.LOGIN_REQUEST,
+    type: types.REGISTRATION_REQUEST,
     username,
     password,
   };
