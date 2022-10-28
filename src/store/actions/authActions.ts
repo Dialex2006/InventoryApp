@@ -84,3 +84,9 @@ export function logOut() {
     type: types.LOG_OUT,
   };
 }
+
+export function clearRegistrationFlag() {
+  return {
+    type: types.CLEAR_REGISTRATION_FLAG,
+  };
+}

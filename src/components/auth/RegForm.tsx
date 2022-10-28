@@ -1,11 +1,16 @@
 import { FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { IAuthState } from "../../models/reducers/auth";
 
 import React from "react";
 
 import * as authActions from "../../store/actions/authActions";
 
 import "./styles.css";
+
+interface IAuth {
+  authReducer: IAuthState;
+}
 
 interface RegFormProps {
   onCancel?: () => void;
@@ -14,10 +19,18 @@ interface RegFormProps {
 
 const RegForm = (props: RegFormProps) => {
   const dispatch = useDispatch();
+  const isJustRegistered = useSelector(
+    (state: IAuth) => state.authReducer.isJustRegistered
+  );
 
   const usernameRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
   const [afterCreating, setAfterCreating] = useState("");
+
+  if (isJustRegistered === true) {
+    setAfterCreating("User account has been created! You can sign in now");
+    dispatch(authActions.clearRegistrationFlag());
+  }
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -32,10 +45,6 @@ const RegForm = (props: RegFormProps) => {
           passwordRef.current?.value
         )
       );
-      // Not a good way, but works of course. Better to
-      // 1) have a notification fired in saga as soon as registration call completes successfully
-      // 2) or use isJustRegistered value in the store
-      setAfterCreating("User account has been created! You can sign in now");
     }
   };
 
