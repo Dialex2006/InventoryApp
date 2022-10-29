@@ -5,6 +5,7 @@ export interface IInventoryAsset {
   name: string;
   serial: string;
   user: string;
+  status: string;
 }
 
 export interface IInventoryResponse {

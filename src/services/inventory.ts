@@ -15,5 +15,5 @@ export function getInventory(): Promise<AxiosResponse<IInventoryResponse>> {
 export function addAsset(
   asset: IInventoryAsset
 ): Promise<AxiosResponse<IAddAssetResponse>> {
-  return apiClient.post(ApiConfig.ADD_ASSET, { asset });
+  return apiClient.post(ApiConfig.ADD_ASSET, { ...asset });
 }

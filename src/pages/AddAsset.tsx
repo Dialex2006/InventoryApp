@@ -14,6 +14,7 @@ const AddAsset = () => {
   const assetTypeRef = React.useRef<HTMLSelectElement>(null);
   const locationRef = React.useRef<HTMLSelectElement>(null);
   const employeeRef = React.useRef<HTMLSelectElement>(null);
+  const statusRef = React.useRef<HTMLSelectElement>(null);
   const nameRef = React.useRef<HTMLTextAreaElement>(null);
   const serialRef = React.useRef<HTMLTextAreaElement>(null);
   const dateRef = React.useRef<HTMLInputElement>(null);
@@ -23,6 +24,7 @@ const AddAsset = () => {
 
     const category = assetTypeRef.current?.value;
     const user = employeeRef.current?.value;
+    const status = statusRef.current?.value;
     const location = locationRef.current?.value;
     const name = nameRef.current?.value;
     const serial = serialRef.current?.value;
@@ -36,6 +38,7 @@ const AddAsset = () => {
         inventoryActions.requestAddAsset({
           category: category,
           user: user ?? `unknown`,
+          status: status ?? `unknown`,
           location: location ?? `unknown`,
           name: name ?? `unknown`,
           serial: serial ?? `unknown`,
@@ -86,7 +89,7 @@ const AddAsset = () => {
           </select>
         </div>
         <div>
-          <select className="selection" name="framework" ref={employeeRef}>
+          <select className="selection" name="framework" ref={statusRef}>
             <option value="">Select status</option>
             <option value="In use">In use</option>
             <option value="Inactive">Inactive</option>
