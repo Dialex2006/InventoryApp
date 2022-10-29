@@ -119,7 +119,7 @@ const InventoryList = () => {
               <th>Type</th>
               <th>User</th>
               <th>Status</th>
-              <th>Date</th>
+              <th>Date of purchase</th>
               <th>Location</th>
             </tr>
           </thead>
