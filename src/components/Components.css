@@ -47,6 +47,20 @@
   cursor: pointer;
 }
 
+.reset-button {
+  color: #ffffff;
+  background-color: #bd8814;
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 20px;
+  width: 180px;
+  margin: 5px;
+  cursor: pointer;
+}
+
 .form {
   margin-top: 50px;
   text-align: center;
@@ -73,7 +87,6 @@
 table {
   border: 2px solid #55111d;
   width: 90%;
-  height: 200px;
   text-align: center;
   margin-left: 5%;
 }
@@ -85,6 +98,7 @@ th {
 td {
   text-align: center;
   width: 15%;
+  height: 40px;
 }
 
 tr:nth-child(even) {
