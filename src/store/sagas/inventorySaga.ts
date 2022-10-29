@@ -29,17 +29,7 @@ export function* inventoryAsync(action: IInventoryRequestState) {
     }, 200);
     return;
   } else {
-    if (
-      Object.values(response.data).some((it) => {
-        return it.category === action.category;
-      })
-    ) {
-      yield put(inventoryActions.onInventoryResponse(response.data));
-    } else {
-      setTimeout(() => {
-        alert(`Login failed: incorrect login or password`);
-      }, 200);
-    }
+    yield put(inventoryActions.onInventoryResponse(response.data));
   }
   yield put(inventoryActions.disableLoader());
 }
