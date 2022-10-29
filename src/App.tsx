@@ -8,6 +8,7 @@ import MainNavigation from "./components/navigation/MainNavigation";
 import AddAsset from "./pages/AddAsset";
 
 import "./App.css";
+import InventoryList from "./pages/InventoryList";
 
 interface IAuth {
   authReducer: IAuthState;
@@ -19,7 +20,8 @@ function App() {
   );
 
   // TODO: get rid of props in the pages later
-  const content = isLoggedIn ? (
+  //const content = isLoggedIn ? (    return this later
+  const content = true ? (
     <div>
       <MainNavigation />
       <Switch>
@@ -31,6 +33,9 @@ function App() {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/inventory">
+          <InventoryList />
         </Route>
       </Switch>
     </div>

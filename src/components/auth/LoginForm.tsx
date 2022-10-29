@@ -1,5 +1,6 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
+import React from "react";
 
 import * as authActions from "../../store/actions/authActions";
 
@@ -12,11 +13,29 @@ interface LoginFormProps {
 
 const LoginForm = (props: LoginFormProps) => {
   const dispatch = useDispatch();
+  const usernameRef = React.useRef<HTMLInputElement>(null);
+  const passwordRef = React.useRef<HTMLInputElement>(null);
+  const [loginMessage, setLoginMessage] = useState("");
 
   const onSubmitForm = (e: FormEvent) => {
     e.preventDefault();
     // TODO: @Dmitrii, use login form values in this function
-    dispatch(authActions.requestLogin("test1", "pwd"));
+    if (
+      usernameRef.current?.value !== undefined &&
+      passwordRef.current?.value !== undefined
+    ) {
+      if (
+        usernameRef.current?.value !== "" &&
+        passwordRef.current?.value !== ""
+      ) {
+        dispatch(
+          authActions.requestLogin(
+            usernameRef.current?.value,
+            passwordRef.current?.value
+          )
+        );
+      } else setLoginMessage("Fill in username and password");
+    }
   };
 
   return (
@@ -31,6 +50,7 @@ const LoginForm = (props: LoginFormProps) => {
                 type="text"
                 className="input-fields"
                 placeholder="Enter username"
+                ref={usernameRef}
               />
             </div>
             <div className="login-fields">
@@ -39,6 +59,7 @@ const LoginForm = (props: LoginFormProps) => {
                 type="password"
                 className="input-fields"
                 placeholder="Enter password"
+                ref={passwordRef}
               />
             </div>
           </div>
@@ -53,7 +74,7 @@ const LoginForm = (props: LoginFormProps) => {
           </div>
         </form>
       </div>
-      <div className="created-account-insert"></div>
+      <div className="created-account-insert">{loginMessage}</div>
       <button onClick={props.onCancel} className="btn btn--alt">
         Cancel
       </button>

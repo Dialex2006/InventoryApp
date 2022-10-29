@@ -39,12 +39,19 @@ const RegForm = (props: RegFormProps) => {
       usernameRef.current?.value !== undefined &&
       passwordRef.current?.value !== undefined
     ) {
-      dispatch(
-        authActions.requestRegistration(
-          usernameRef.current?.value,
-          passwordRef.current?.value
-        )
-      );
+      //if both fields are not empty
+      if (
+        usernameRef.current?.value !== "" &&
+        passwordRef.current?.value !== ""
+      ) {
+        dispatch(
+          authActions.requestRegistration(
+            usernameRef.current?.value,
+            passwordRef.current?.value
+          )
+        );
+        setAfterCreating("User account has been created! You can sign in now");
+      } else setAfterCreating("Failed! Enter both username and password");
     }
   };
 

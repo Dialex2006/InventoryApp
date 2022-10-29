@@ -69,3 +69,40 @@
   align-content: center;
   text-align: center;
 }
+
+table {
+  border: 2px solid #55111d;
+  width: 90%;
+  height: 200px;
+  text-align: center;
+  margin-left: 5%;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+td {
+  text-align: center;
+  width: 15%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #55111d;
+  color: white;
+}
+
+.simple-text {
+  color: #450e18;
+}
