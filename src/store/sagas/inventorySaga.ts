@@ -34,9 +34,7 @@ export function* inventoryAsync(action: IInventoryRequestState) {
         return it.category === action.category;
       })
     ) {
-      yield put(
-        inventoryActions.onInventoryResponse(response.data, action.category)
-      );
+      yield put(inventoryActions.onInventoryResponse(response.data));
     } else {
       setTimeout(() => {
         alert(`Login failed: incorrect login or password`);

@@ -19,9 +19,7 @@ function App() {
     (state: IAuth) => state.authReducer.isLoggedIn
   );
 
-  // TODO: get rid of props in the pages later
-  //const content = isLoggedIn ? (    return this later
-  const content = true ? (
+  const content = isLoggedIn ? (
     <div>
       <MainNavigation />
       <Switch>

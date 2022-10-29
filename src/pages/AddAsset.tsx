@@ -21,10 +21,6 @@ const AddAsset = () => {
   const submitHandler = (event: any) => {
     event.preventDefault();
 
-    console.log(dateRef.current?.value);
-    console.log(serialRef.current?.value);
-    console.log(assetTypeRef.current?.value);
-
     const category = assetTypeRef.current?.value;
     const user = employeeRef.current?.value;
     const location = locationRef.current?.value;

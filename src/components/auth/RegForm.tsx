@@ -34,24 +34,17 @@ const RegForm = (props: RegFormProps) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    if (
-      usernameRef.current?.value !== undefined &&
-      passwordRef.current?.value !== undefined
-    ) {
-      //if both fields are not empty
-      if (
-        usernameRef.current?.value !== "" &&
-        passwordRef.current?.value !== ""
-      ) {
-        dispatch(
-          authActions.requestRegistration(
-            usernameRef.current?.value,
-            passwordRef.current?.value
-          )
-        );
-        setAfterCreating("User account has been created! You can sign in now");
-      } else setAfterCreating("Failed! Enter both username and password");
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+    if (username && username.length > 0 && password && password.length > 0) {
+      dispatch(
+        authActions.requestRegistration(
+          usernameRef.current?.value,
+          passwordRef.current?.value
+        )
+      );
+    } else {
+      setAfterCreating("Failed! Enter both username and password");
     }
   };
 

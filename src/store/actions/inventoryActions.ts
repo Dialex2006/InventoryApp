@@ -12,10 +12,9 @@ import * as types from "./types";
  *
  * @param category Category of assets to look for.
  */
-export function requestInventory(category: string) {
+export function requestInventory() {
   return {
     type: types.INVENTORY_REQUEST,
-    category,
   };
 }
 
@@ -25,14 +24,10 @@ export function requestInventory(category: string) {
  * @param response Inventory response.
  * @param category Items category to filter by.
  */
-export function onInventoryResponse(
-  response: IInventoryResponse,
-  filterCategory: string
-) {
+export function onInventoryResponse(response: IInventoryResponse) {
   return {
     type: types.INVENTORY_RESPONSE,
     response,
-    filterCategory,
   };
 }
 

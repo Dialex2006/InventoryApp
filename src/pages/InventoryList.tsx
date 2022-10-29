@@ -1,63 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
-import React from "react";
-import "../components/Components.css";
+import { useSelector } from "react-redux";
 import { IInventoryState } from "../models/reducers/inventory";
 
-import * as inventoryActions from "../store/actions/inventoryActions";
+import React from "react";
+
+import "../components/Components.css";
 
 interface IInventory {
   inventoryReducer: IInventoryState;
 }
 
-// TODO: get rid of props in the pages later
 const InventoryList = () => {
-  const assetTypeRef = React.useRef<HTMLSelectElement>(null);
-  const locationRef = React.useRef<HTMLSelectElement>(null);
-  const employeeRef = React.useRef<HTMLSelectElement>(null);
-  const dispatch = useDispatch();
   const inventoryItems = useSelector(
     (state: IInventory) => state.inventoryReducer.inventoryItems
   );
 
-  //   dispatch(inventoryActions.requestInventory());
-  //   console.log(inventoryItems);
+  const assetTypeRef = React.useRef<HTMLSelectElement>(null);
+  const locationRef = React.useRef<HTMLSelectElement>(null);
+  const employeeRef = React.useRef<HTMLSelectElement>(null);
 
-  const food = [
-    {
-      id: 1,
-      name: "cheese",
-      serial: 10,
-      type: "",
-      user: "",
-      date: "04.05.2022",
-      location: "",
-    },
-    {
-      id: 2,
-      name: "cheese",
-      serial: 10,
-      type: "some",
-      user: "thing",
-      date: "04.05.2022",
-      location: "tamp",
-    },
-    {
-      id: 3,
-      name: "cheese",
-      serial: 10,
-      type: "",
-      user: "",
-      date: "04.05.2022",
-      location: "",
-    },
-  ];
-
-  let res = food.map(function (item) {
+  const res = inventoryItems.map((item, idx) => {
     return (
-      <tr key={item.id}>
+      <tr key={idx}>
         <td>{item.name}</td>
         <td>{item.serial}</td>
-        <td>{item.type}</td>
+        <td>{item.category}</td>
         <td>{item.user}</td>
         <td>{item.date}</td>
         <td>{item.location}</td>

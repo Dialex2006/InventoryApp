@@ -31,9 +31,7 @@ export const inventoryReducer = createReducer(initialState, {
   ) {
     return {
       ...state,
-      inventoryItems: Object.values(action.response).filter(
-        (it) => it.category === action.filterCategory
-      ),
+      inventoryItems: Object.values(action.response),
     };
   },
   [types.CLEAR_INVENTORY](state: IInventoryState) {

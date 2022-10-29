@@ -12,7 +12,6 @@ export interface IInventoryRequestState {
 export interface IInventoryResponseState {
   type: string;
   response: IInventoryResponse;
-  filterCategory: string;
 }
 
 export interface IAddAssetRequestState {

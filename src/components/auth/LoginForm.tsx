@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import React from "react";
 
 import * as authActions from "../../store/actions/authActions";
@@ -19,22 +20,17 @@ const LoginForm = (props: LoginFormProps) => {
 
   const onSubmitForm = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: @Dmitrii, use login form values in this function
-    if (
-      usernameRef.current?.value !== undefined &&
-      passwordRef.current?.value !== undefined
-    ) {
-      if (
-        usernameRef.current?.value !== "" &&
-        passwordRef.current?.value !== ""
-      ) {
-        dispatch(
-          authActions.requestLogin(
-            usernameRef.current?.value,
-            passwordRef.current?.value
-          )
-        );
-      } else setLoginMessage("Fill in username and password");
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+    if (username && username.length > 0 && password && password.length > 0) {
+      dispatch(
+        authActions.requestLogin(
+          usernameRef.current?.value,
+          passwordRef.current?.value
+        )
+      );
+    } else {
+      setLoginMessage("Fill in username and password");
     }
   };
 

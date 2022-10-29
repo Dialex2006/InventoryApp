@@ -20,6 +20,8 @@ export function* loginAsync(action: ILoginRequestState) {
   yield put(authActions.enableLoader());
   const response: AxiosResponse<ILoginResponse> = yield call(loginUser);
 
+  console.log(`username: ${action.username}, password: ${action.password}`);
+
   if (response === undefined) {
     yield put(authActions.loginFailed());
     setTimeout(() => {
