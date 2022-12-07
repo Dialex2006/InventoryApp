@@ -1,6 +1,12 @@
 // We are sorry, this authentication sucks...
 
-import { ILoginResponse, IRegisterResponse } from "../api/auth";
+import {
+  ILoginResponse,
+  IRegisterResponse,
+  ISBAllUsersResponse,
+  ISBUserGenericResponse,
+  ISBUserResponse,
+} from "../api/auth";
 
 export interface ILoginRequestState {
   type: string;
@@ -22,4 +28,35 @@ export interface IRegisterRequestState {
 export interface IRegisterResponseState {
   type: string;
   response: IRegisterResponse;
+}
+
+//
+// Spring Boot interfaces
+
+export interface ISBAllUsersRequestState {
+  type: string;
+}
+
+export interface ISBUserRequestState {
+  type: string;
+  name: string;
+}
+
+export interface ISBAddUserRequestState {
+  type: string;
+  name: string;
+}
+
+export interface ISBAllUsersResponseState {
+  type: string;
+  response: ISBAllUsersResponse;
+}
+
+export interface ISBUserResponseState {
+  type: string;
+  response: ISBUserResponse;
+}
+
+export interface ISBUserGenericResponseState extends ISBUserGenericResponse {
+  type: string;
 }

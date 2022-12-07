@@ -16,3 +16,30 @@ export interface IInventoryResponse {
 export interface IAddAssetResponse {
   error?: string;
 }
+
+//
+// Spring Boot interfaces
+
+export interface ISBInventoryAssetItem {
+  id: number;
+  unitId: number;
+  itemName: string;
+  serialNumber: string;
+  purchaseDate: string;
+  supplier: string;
+  ownerId: number;
+  new: boolean;
+}
+
+export interface ISBInventoryResponse extends ISBInventoryGenericResponse {
+  data: { assets: ISBInventoryAssetItem[] };
+}
+
+export interface ISBInventoryAssetResponse extends ISBInventoryGenericResponse {
+  data: { assetItem: ISBInventoryAssetItem };
+}
+
+export interface ISBInventoryGenericResponse {
+  error: string;
+  status: "ok" | "error";
+}
