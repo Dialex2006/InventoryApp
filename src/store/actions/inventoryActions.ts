@@ -1,8 +1,12 @@
 /* Reducer actions related to inventory */
 
+import { ISBInventoryResponseState } from "../../models/actions/inventory";
 import {
   IInventoryAsset,
   IInventoryResponse,
+  ISBInventoryAssetItemToAdd,
+  ISBInventoryAssetResponse,
+  ISBInventoryGenericResponse,
 } from "../../models/api/inventory";
 
 import * as types from "./types";
@@ -76,5 +80,79 @@ export function disableLoader() {
 export function clearInventory() {
   return {
     type: types.CLEAR_INVENTORY,
+  };
+}
+
+//
+// Spring Boot actions
+export function requestSBInventory() {
+  return {
+    type: types.SB_INVENTORY_REQUEST,
+  };
+}
+
+export function onSBInventoryResponse(response: ISBInventoryResponseState) {
+  return {
+    type: types.SB_INVENTORY_RESPONSE,
+    response,
+  };
+}
+
+export function requestSBAssetByName(assetName: string) {
+  return {
+    type: types.SB_NAME_ASSET_REQUEST,
+    assetName,
+  };
+}
+
+export function onSBAssetByNameResponse(response: ISBInventoryAssetResponse) {
+  return {
+    type: types.SB_NAME_ASSET_RESPONSE,
+    response,
+  };
+}
+
+export function requestSBAssetByNumber(assetName: string) {
+  return {
+    type: types.SB_NUMBER_ASSET_REQUEST,
+    assetName,
+  };
+}
+
+export function onSBAssetByNumberResponse(response: ISBInventoryAssetResponse) {
+  return {
+    type: types.SB_NUMBER_ASSET_RESPONSE,
+    response,
+  };
+}
+
+export function requestAddSBAsset(asset: ISBInventoryAssetItemToAdd) {
+  return {
+    type: types.SB_ADD_ASSET_REQUEST,
+    asset,
+  };
+}
+
+export function onAddSBAssetResponse(response: ISBInventoryGenericResponse) {
+  return {
+    type: types.SB_ADD_ASSET_RESPONSE,
+    response,
+  };
+}
+
+export function requestAssignSBAssetToUser(username: string, itemId: number) {
+  return {
+    type: types.SB_ASSIGN_ASSET_TO_USER_REQUEST,
+    username,
+    itemId,
+  };
+}
+
+export function onAssignSBAssetToUserResponse(
+  response: ISBInventoryGenericResponse
+) {
+  return {
+    type: types.SB_ASSIGN_ASSET_TO_USER_RESPONSE,
+    response,
   };
 }

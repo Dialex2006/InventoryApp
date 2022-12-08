@@ -1,6 +1,11 @@
 /* Reducer actions related to authentication */
 
-import { ILoginResponse } from "../../models/api/auth";
+import {
+  ILoginResponse,
+  ISBAllUsersResponse,
+  ISBUserGenericResponse,
+  ISBUserResponse,
+} from "../../models/api/auth";
 
 import * as types from "./types";
 
@@ -64,6 +69,50 @@ export function onLoginResponse(response: ILoginResponse, username: string) {
     type: types.LOGIN_RESPONSE,
     response,
     username,
+  };
+}
+
+//
+// Spring Boot actions
+
+export function queryAllUsers() {
+  return {
+    type: types.ALL_USERS_REQUEST,
+  };
+}
+
+export function onAllUsersResponse(response: ISBAllUsersResponse) {
+  return {
+    type: types.ALL_USERS_RESPONSE,
+    response,
+  };
+}
+
+export function queryUserByName(username: string) {
+  return {
+    type: types.USER_REQUEST,
+    username,
+  };
+}
+
+export function onUserByNameResponse(response: ISBUserResponse) {
+  return {
+    type: types.USER_RESPONSE,
+    response,
+  };
+}
+
+export function requestAddUser(username: string) {
+  return {
+    type: types.ADD_USER_REQUEST,
+    username,
+  };
+}
+
+export function onAddUserResponse(response: ISBUserGenericResponse) {
+  return {
+    type: types.ADD_USER_RESPONSE,
+    response,
   };
 }
 

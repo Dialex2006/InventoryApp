@@ -2,6 +2,7 @@ import {
   IAddAssetResponse,
   IInventoryAsset,
   IInventoryResponse,
+  ISBInventoryAssetItemToAdd,
   ISBInventoryAssetResponse,
   ISBInventoryGenericResponse,
   ISBInventoryResponse,
@@ -36,7 +37,7 @@ export interface ISBInventoryRequestState {
 
 export interface ISBInventoryNamedAssetsRequestState {
   type: string;
-  name: string;
+  assetName: string;
 }
 
 export interface ISBInventoryNumberAssetRequestState {
@@ -46,14 +47,13 @@ export interface ISBInventoryNumberAssetRequestState {
 
 export interface ISBInventoryAddAssetsRequestState {
   type: string;
-  assetName: string;
-  serialNumber: string;
-  supplier: string;
+  asset: ISBInventoryAssetItemToAdd;
 }
 
 export interface ISBInventoryAssignAssetRequestState {
   type: string;
   username: string;
+  itemId: number;
 }
 
 export interface ISBInventoryResponseState {

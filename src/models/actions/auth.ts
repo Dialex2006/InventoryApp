@@ -39,12 +39,12 @@ export interface ISBAllUsersRequestState {
 
 export interface ISBUserRequestState {
   type: string;
-  name: string;
+  username: string;
 }
 
 export interface ISBAddUserRequestState {
   type: string;
-  name: string;
+  username: string;
 }
 
 export interface ISBAllUsersResponseState {

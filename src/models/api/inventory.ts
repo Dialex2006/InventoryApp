@@ -20,6 +20,12 @@ export interface IAddAssetResponse {
 //
 // Spring Boot interfaces
 
+export interface ISBInventoryAssetItemToAdd {
+  assetName: string;
+  serialNumber: string;
+  supplier: string;
+}
+
 export interface ISBInventoryAssetItem {
   id: number;
   unitId: number;
