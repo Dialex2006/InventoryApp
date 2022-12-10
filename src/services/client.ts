@@ -6,4 +6,9 @@ const apiClient = axios.create({
   responseType: "json",
 });
 
-export { apiClient };
+const sbApiClient = axios.create({
+  baseURL: ApiConfig.BASE_SPRINGBOOT_URL,
+  responseType: "json",
+});
+
+export { apiClient, sbApiClient };
