@@ -5,12 +5,27 @@
  */
 
 import { put, call } from "redux-saga/effects";
-import { loginUser, registerUser } from "../../services/userAuth";
+import {
+  addUserByName,
+  getAllUsers,
+  getUserByName,
+  loginUser,
+  registerUser,
+} from "../../services/userAuth";
 import {
   ILoginRequestState,
   IRegisterRequestState,
+  ISBAddUserRequestState,
+  ISBAllUsersRequestState,
+  ISBUserRequestState,
 } from "../../models/actions/auth";
-import { ILoginResponse, IRegisterResponse } from "../../models/api/auth";
+import {
+  ILoginResponse,
+  IRegisterResponse,
+  ISBAllUsersResponse,
+  ISBUserGenericResponse,
+  ISBUserResponse,
+} from "../../models/api/auth";
 import { AxiosResponse } from "axios";
 
 import * as authActions from "../actions/authActions";
@@ -19,8 +34,6 @@ import * as authActions from "../actions/authActions";
 export function* loginAsync(action: ILoginRequestState) {
   yield put(authActions.enableLoader());
   const response: AxiosResponse<ILoginResponse> = yield call(loginUser);
-
-  console.log(`username: ${action.username}, password: ${action.password}`);
 
   if (response === undefined) {
     yield put(authActions.loginFailed());
@@ -64,4 +77,52 @@ export function* registerAsync(action: IRegisterRequestState) {
   } else {
     yield put(authActions.onRegisterResponse());
   }
+}
+
+export function* getAllUsersAsync(action: ISBAllUsersRequestState) {
+  yield put(authActions.enableLoader());
+  const response: AxiosResponse<ISBAllUsersResponse> = yield call(getAllUsers);
+
+  if (response === undefined) {
+    setTimeout(() => {
+      alert(`Query all users failed: the response is null`);
+    }, 200);
+  } else {
+    yield put(authActions.onAllUsersResponse(response.data));
+  }
+  yield put(authActions.disableLoader());
+}
+
+export function* getUserByNameAsync(action: ISBUserRequestState) {
+  yield put(authActions.enableLoader());
+  const response: AxiosResponse<ISBUserResponse> = yield call(
+    getUserByName,
+    action.username
+  );
+
+  if (response === undefined) {
+    setTimeout(() => {
+      alert(`Query user by name failed: the response is null`);
+    }, 200);
+  } else {
+    yield put(authActions.onUserByNameResponse(response.data));
+  }
+  yield put(authActions.disableLoader());
+}
+
+export function* addUserAsync(action: ISBAddUserRequestState) {
+  yield put(authActions.enableLoader());
+  const response: AxiosResponse<ISBUserGenericResponse> = yield call(
+    addUserByName,
+    action.username
+  );
+
+  if (response === undefined) {
+    setTimeout(() => {
+      alert(`Add user failed: the response is null`);
+    }, 200);
+  } else {
+    yield put(authActions.onAddUserResponse(response.data));
+  }
+  yield put(authActions.disableLoader());
 }

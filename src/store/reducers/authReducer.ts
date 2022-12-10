@@ -4,6 +4,11 @@ import { IAuthState } from "../../models/reducers/auth";
 import {
   ILoginRequestState,
   ILoginResponseState,
+  ISBAddUserRequestState,
+  ISBAllUsersResponseState,
+  ISBUserGenericResponseState,
+  ISBUserRequestState,
+  ISBUserResponseState,
 } from "../../models/actions/auth";
 
 import createReducer from "../../lib/createReducer";
@@ -16,6 +21,12 @@ const initialState: IAuthState = {
   registrationFailed: false,
   isJustRegistered: false,
   username: "",
+  //
+  // Spring Boot entries
+  allUsers: [],
+  namedUser: undefined,
+  isUserAdded: false,
+  userToAdd: "",
 };
 
 export const authReducer = createReducer(initialState, {
@@ -72,6 +83,35 @@ export const authReducer = createReducer(initialState, {
     return {
       ...state,
       isJustRegistered: false,
+    };
+  },
+  //
+  // Spring Boot reducers
+  [types.ALL_USERS_REQUEST](state: IAuthState) {
+    return { ...state };
+  },
+  [types.ALL_USERS_RESPONSE](
+    state: IAuthState,
+    action: ISBAllUsersResponseState
+  ) {
+    return { ...state, allUsers: action.response.data.users };
+  },
+  [types.USER_REQUEST](state: IAuthState, action: ISBUserRequestState) {
+    return { ...state, username: action.username };
+  },
+  [types.USER_RESPONSE](state: IAuthState, action: ISBUserResponseState) {
+    return { ...state, namedUser: action.response.data.user };
+  },
+  [types.ADD_USER_REQUEST](state: IAuthState, action: ISBAddUserRequestState) {
+    return { ...state, userToAdd: action.username };
+  },
+  [types.ADD_USER_RESPONSE](
+    state: IAuthState,
+    action: ISBUserGenericResponseState
+  ) {
+    return {
+      ...state,
+      isUserAdded: action.status === "ok",
     };
   },
 });
