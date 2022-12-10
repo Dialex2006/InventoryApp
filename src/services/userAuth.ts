@@ -24,11 +24,11 @@ export function registerUser(
 //
 // Spring Boot service functions
 
-export function queryAllUsers(): Promise<AxiosResponse<ISBAllUsersResponse>> {
+export function getAllUsers(): Promise<AxiosResponse<ISBAllUsersResponse>> {
   return apiClient.get(ApiConfig.ALL_USERS);
 }
 
-export function queryUserByName(
+export function getUserByName(
   username: string
 ): Promise<AxiosResponse<ISBUserResponse>> {
   return apiClient.get(ApiConfig.USER(username));

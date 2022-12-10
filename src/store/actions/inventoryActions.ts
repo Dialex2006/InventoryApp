@@ -1,12 +1,12 @@
 /* Reducer actions related to inventory */
 
-import { ISBInventoryResponseState } from "../../models/actions/inventory";
 import {
   IInventoryAsset,
   IInventoryResponse,
   ISBInventoryAssetItemToAdd,
   ISBInventoryAssetResponse,
   ISBInventoryGenericResponse,
+  ISBInventoryResponse,
 } from "../../models/api/inventory";
 
 import * as types from "./types";
@@ -91,7 +91,7 @@ export function requestSBInventory() {
   };
 }
 
-export function onSBInventoryResponse(response: ISBInventoryResponseState) {
+export function onSBInventoryResponse(response: ISBInventoryResponse) {
   return {
     type: types.SB_INVENTORY_RESPONSE,
     response,

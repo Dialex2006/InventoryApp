@@ -29,13 +29,13 @@ export function getSBInventory(): Promise<AxiosResponse<ISBInventoryResponse>> {
   return apiClient.get(ApiConfig.ALL_SB_ASSETS);
 }
 
-export function querySBAssetsByName(
+export function getSBAssetsByName(
   assetName: string
 ): Promise<AxiosResponse<ISBInventoryResponse>> {
   return apiClient.get(ApiConfig.SB_ASSET_BY_NAME(assetName));
 }
 
-export function querySBAssetsByNumber(
+export function getSBAssetsByNumber(
   assetSerialNumber: string
 ): Promise<AxiosResponse<ISBInventoryAssetResponse>> {
   return apiClient.get(ApiConfig.SB_ASSET_BY_NUMBER(assetSerialNumber));
