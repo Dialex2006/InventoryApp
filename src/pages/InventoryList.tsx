@@ -11,8 +11,8 @@ interface IInventory {
 }
 
 const InventoryList = () => {
-  const inventoryItems = useSelector(
-    (state: IInventory) => state.inventoryReducer.inventoryItems
+  const assetsItems = useSelector(
+    (state: IInventory) => state.inventoryReducer.sbAssets
   );
   const assetTypeRef = React.useRef<HTMLSelectElement>(null);
   const locationRef = React.useRef<HTMLSelectElement>(null);
@@ -37,21 +37,23 @@ const InventoryList = () => {
     setEmployee("unknown");
   };
 
-  const res = inventoryItems.map((item, idx) => {
+  const res = assetsItems.map((item, idx) => {
+    console.log("Inventory page");
+    console.log(item.itemName);
     if (
-      (category === item.category || category === "unknown") &&
-      (location === item.location || location === "unknown") &&
-      (employee === item.user || employee === "unknown")
+      (category === item.itemName || category === "unknown") &&
+      (location === item.itemName || location === "unknown") &&
+      (employee === item.itemName || employee === "unknown")
     )
       return (
         <tr key={idx}>
-          <td>{item.name}</td>
-          <td>{item.serial}</td>
-          <td>{item.category}</td>
-          <td>{item.user}</td>
-          <td>{item.status}</td>
-          <td>{item.date}</td>
-          <td>{item.location}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
+          <td>{item.itemName}</td>
         </tr>
       );
   });

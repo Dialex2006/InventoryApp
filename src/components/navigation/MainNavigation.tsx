@@ -25,6 +25,9 @@ const MainNavigation = () => {
             <Link to="/">Main page</Link>
           </li>
           <li>
+            <Link to="/users">Users</Link>
+          </li>
+          <li>
             <Link to="/inventory">List of inventory</Link>
           </li>
           <li>

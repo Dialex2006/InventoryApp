@@ -29,6 +29,19 @@
   color-scheme: dark;
 }
 
+.textForm {
+  color: #010101;
+  background-color: #aeaaaa;
+  text-align: center;
+  width: 200px;
+  padding: 10px;
+  border: 0px;
+  border-radius: 10px;
+  height: 30px;
+  color-scheme: dark;
+  vertical-align: middle;
+}
+
 ::placeholder {
   color: #f2e0cf;
 }
