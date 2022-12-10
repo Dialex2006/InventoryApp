@@ -1,4 +1,4 @@
-import { apiClient } from "./client";
+import { apiClient, sbApiClient } from "./client";
 import { AxiosResponse } from "axios";
 import {
   IAddAssetResponse,
@@ -26,32 +26,32 @@ export function addAsset(
 // Spring Boot service functions
 
 export function getSBInventory(): Promise<AxiosResponse<ISBInventoryResponse>> {
-  return apiClient.get(ApiConfig.ALL_SB_ASSETS);
+  return sbApiClient.get(ApiConfig.ALL_SB_ASSETS);
 }
 
 export function getSBAssetsByName(
   assetName: string
 ): Promise<AxiosResponse<ISBInventoryResponse>> {
-  return apiClient.get(ApiConfig.SB_ASSET_BY_NAME(assetName));
+  return sbApiClient.get(ApiConfig.SB_ASSET_BY_NAME(assetName));
 }
 
 export function getSBAssetsByNumber(
   assetSerialNumber: string
 ): Promise<AxiosResponse<ISBInventoryAssetResponse>> {
-  return apiClient.get(ApiConfig.SB_ASSET_BY_NUMBER(assetSerialNumber));
+  return sbApiClient.get(ApiConfig.SB_ASSET_BY_NUMBER(assetSerialNumber));
 }
 
 export function addSBAsset(
   asset: ISBInventoryAssetItemToAdd
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
-  return apiClient.post(ApiConfig.ADD_SB_ASSET, { ...asset });
+  return sbApiClient.post(ApiConfig.ADD_SB_ASSET, { ...asset });
 }
 
 export function assignSBAssetToUser(
   username: string,
   assetId: number
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
-  return apiClient.post(ApiConfig.ASSIGN_SB_ASSETS, {
+  return sbApiClient.post(ApiConfig.ASSIGN_SB_ASSETS, {
     userName: username,
     id: assetId,
   });
