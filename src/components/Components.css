@@ -133,3 +133,9 @@ th {
 .simple-text {
   color: #450e18;
 }
+
+.items {
+  color: #450e18;
+  font-weight: 900;
+  font-size: 1.2rem;
+}

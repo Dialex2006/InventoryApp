@@ -33,22 +33,9 @@ const InventoryItem = () => {
   const userRef = React.useRef<HTMLSelectElement>(null);
   const [user, setUser] = useState("unknown");
 
-  const res = assetsItems.map((item, idx) => {
-    return (
-      <div key={idx}>
-        <div>{item.itemName}</div>
-        <div>{item.serialNumber}</div>
-        <div>{item.supplier}</div>
-        <div>{item.purchaseDate}</div>
-        <div>{item.ownerId}</div>
-      </div>
-    );
-  });
-
   const assignAsset = () => {
     const user = userRef.current?.value;
     //Define UserID and assign to selectedItem indicating its ID
-    //requestAssignSBAssetToUser
     if (user === undefined || user.length == 0) {
       alert("Name must not be empty!");
     } else {
@@ -58,20 +45,35 @@ const InventoryItem = () => {
     }
   };
 
-  return (
-    <div>
-      <div className="App">
-        <header className="Inv-header">
-          <h2>Specific Inventory Item</h2>
-        </header>
-        <div>{res}</div>
-        <select value={user} ref={userRef} onClick={assignAsset}>
+  const res = assetsItems.map((item, idx) => {
+    return (
+      <div key={idx}>
+        <div className="items">Item: {item.itemName}</div>
+        <div>Serial Number: {item.serialNumber}</div>
+        <div>Supplier: {item.supplier}</div>
+        <select value={user} ref={userRef} placeholder="Select user">
           {allUsers.map(({ name }, index) => (
             <option value={name}>{name}</option>
           ))}
         </select>
+        <form action="/assign">
+          <input type="hidden" id="serial" name={item.serialNumber} />
+          <button className="reset-button" onClick={assignAsset}>
+            {" "}
+            Assign to user
+          </button>
+        </form>
+      </div>
+    );
+  });
 
-        <button className="reset-button"> Assign to user</button>
+  return (
+    <div>
+      <div className="App">
+        <header className="Inv-header">
+          <h2>Assign Inventory Items to Users</h2>
+        </header>
+        <div>{res}</div>
       </div>
     </div>
   );

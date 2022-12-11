@@ -36,6 +36,8 @@ const AddAsset = () => {
       newAsset.serialNumber = serialRef.current?.value;
       newAsset.supplier = supplierRef.current?.value;
 
+      console.log("Asset: ", newAsset);
+
       dispatch(inventoryActions.requestAddSBAsset(newAsset));
       history.push("/");
     } else {
