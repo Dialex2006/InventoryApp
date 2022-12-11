@@ -36,9 +36,7 @@ const Welcome = () => {
       <div className="App">
         <header className="App-header">
           <p>Welcome to Inventory App</p>
-          <span>
-            Currently you're logged in as <b>{username}</b>
-          </span>
+          <span>You're welcome to use the app</span>
         </header>
       </div>
       <button onClick={logout} className="btn btn-primary">

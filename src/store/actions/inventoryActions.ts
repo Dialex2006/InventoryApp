@@ -105,17 +105,17 @@ export function requestSBAssetByName(assetName: string) {
   };
 }
 
-export function onSBAssetByNameResponse(response: ISBInventoryAssetResponse) {
+export function onSBAssetByNameResponse(response: ISBInventoryResponse) {
   return {
     type: types.SB_NAME_ASSET_RESPONSE,
     response,
   };
 }
 
-export function requestSBAssetByNumber(assetName: string) {
+export function requestSBAssetByNumber(assetSerialNumber: string) {
   return {
     type: types.SB_NUMBER_ASSET_REQUEST,
-    assetName,
+    assetSerialNumber,
   };
 }
 

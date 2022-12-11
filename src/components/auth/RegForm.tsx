@@ -34,6 +34,7 @@ const RegForm = (props: RegFormProps) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setAfterCreating("User account has been created! You can sign in now");
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
     if (username && username.length > 0 && password && password.length > 0) {

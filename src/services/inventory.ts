@@ -44,7 +44,7 @@ export function getSBAssetsByNumber(
 export function addSBAsset(
   asset: ISBInventoryAssetItemToAdd
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
-  return sbApiClient.post(ApiConfig.ADD_SB_ASSET, { ...asset });
+  return sbApiClient.post(ApiConfig.ADD_SB_ASSET, { asset });
 }
 
 export function assignSBAssetToUser(
@@ -52,7 +52,7 @@ export function assignSBAssetToUser(
   assetId: number
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
   return sbApiClient.post(ApiConfig.ASSIGN_SB_ASSETS, {
-    userName: username,
+    username: username,
     id: assetId,
   });
 }

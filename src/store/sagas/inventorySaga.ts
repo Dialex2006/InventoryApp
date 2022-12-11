@@ -89,7 +89,7 @@ export function* sbAssetByNameAsync(
   action: ISBInventoryNamedAssetsRequestState
 ) {
   yield put(inventoryActions.enableLoader());
-  const response: AxiosResponse<ISBInventoryAssetResponse> = yield call(
+  const response: AxiosResponse<ISBInventoryResponse> = yield call(
     getSBAssetsByName,
     action.assetName
   );

@@ -11,47 +11,36 @@ interface IInventory {
 }
 
 const InventoryList = () => {
-  const inventoryItems = useSelector(
-    (state: IInventory) => state.inventoryReducer.inventoryItems
+  const assetsItems = useSelector(
+    (state: IInventory) => state.inventoryReducer.sbAssets
   );
-  const assetTypeRef = React.useRef<HTMLSelectElement>(null);
-  const locationRef = React.useRef<HTMLSelectElement>(null);
-  const employeeRef = React.useRef<HTMLSelectElement>(null);
-  const [category, setCategory] = useState("unknown");
-  const [location, setLocation] = useState("unknown");
-  const [employee, setEmployee] = useState("unknown");
+
+  const supplierRef = React.useRef<HTMLSelectElement>(null);
+  const [supplier, setCategory] = useState("unknown");
 
   const changeCategory = () => {
-    setCategory(assetTypeRef.current?.value || "unknown");
-  };
-  const changeLocation = () => {
-    setLocation(locationRef.current?.value || "unknown");
-  };
-  const changeEmployee = () => {
-    setEmployee(employeeRef.current?.value || "unknown");
+    setCategory(supplierRef.current?.value || "unknown");
   };
 
   const resetFilters = () => {
     setCategory("unknown");
-    setLocation("unknown");
-    setEmployee("unknown");
   };
 
-  const res = inventoryItems.map((item, idx) => {
-    if (
-      (category === item.category || category === "unknown") &&
-      (location === item.location || location === "unknown") &&
-      (employee === item.user || employee === "unknown")
-    )
+  console.log(assetsItems.map);
+
+  const res = assetsItems.map((item, idx) => {
+    console.log("Inventory page");
+    console.log(assetsItems);
+    if (supplier === item.supplier || supplier === "unknown")
       return (
         <tr key={idx}>
-          <td>{item.name}</td>
-          <td>{item.serial}</td>
-          <td>{item.category}</td>
-          <td>{item.user}</td>
-          <td>{item.status}</td>
-          <td>{item.date}</td>
-          <td>{item.location}</td>
+          <td>
+            <a href={"assets/number/"}>{item.itemName}</a>
+          </td>
+          <td>{item.serialNumber}</td>
+          <td>{item.supplier}</td>
+          <td>{item.purchaseDate}</td>
+          <td>{item.ownerId}</td>
         </tr>
       );
   });
@@ -67,48 +56,20 @@ const InventoryList = () => {
           <select
             className="selection"
             name="framework"
-            ref={assetTypeRef}
+            ref={supplierRef}
             onChange={changeCategory}
-            value={category}
+            value={supplier}
           >
-            <option value="unknown">Select asset category</option>
-            <option value="Laptop">Laptop</option>
-            <option value="Mobile device">Mobile device</option>
-            <option value="Office equipment">Office equipment</option>
-            <option value="Key">Key</option>
-            <option value="Software">Software</option>
+            <option value="unknown">Select Supplier</option>
+            <option value="Atea">Atea</option>
+            <option value="Verkkokauppa">Verkkokauppa</option>
+            <option value="Dustin">Dustin</option>
+            <option value="Gigantti">Gigantti</option>
           </select>{" "}
-          <select
-            className="selection"
-            name="framework"
-            ref={locationRef}
-            onChange={changeLocation}
-            value={location}
-          >
-            <option value="unknown">Select office location</option>
-            <option value="Tampere">Tampere</option>
-            <option value="Helsinki">Helsinki</option>
-            <option value="Turku">Turku</option>
-            <option value="Jyväskylä">Jyväskylä</option>
-          </select>{" "}
-          <select
-            className="selection"
-            name="framework"
-            ref={employeeRef}
-            onChange={changeEmployee}
-            value={employee}
-          >
-            <option value="unknown">Select employee name</option>
-            <option value="Marko">Marko</option>
-            <option value="Roope">Roope</option>
-            <option value="Juuso">Juuso</option>
-            <option value="Ville">Ville</option>
-            <option value="Matti">Matti</option>
-          </select>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button className="reset-button" onClick={resetFilters}>
             {" "}
-            Reset all filters
+            Reset the filter
           </button>
         </div>
         <table>
@@ -116,11 +77,9 @@ const InventoryList = () => {
             <tr>
               <th>Device name</th>
               <th>Serial</th>
-              <th>Type</th>
-              <th>User</th>
-              <th>Status</th>
+              <th>Supplier</th>
               <th>Date of purchase</th>
-              <th>Location</th>
+              <th>Owner</th>
             </tr>
           </thead>
           <tbody>{res}</tbody>
