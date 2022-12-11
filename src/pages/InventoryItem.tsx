@@ -28,28 +28,12 @@ const InventoryItem = () => {
   );
 
   const allUsers = useSelector((state: IAuth) => state.authReducer.allUsers);
-  console.log("Selected item: ", assetsItems);
+  console.log("Selected item: ", selectedItem);
 
   const userRef = React.useRef<HTMLSelectElement>(null);
   const [user, setUser] = useState("unknown");
 
   const res = assetsItems.map((item, idx) => {
-    console.log("Inventory page");
-    console.log(assetsItems);
-
-    const assignAsset = () => {
-      const user = userRef.current?.value;
-      //Define UserID and assign to selectedItem indicating its ID
-      //requestAssignSBAssetToUser
-      if (user === undefined || user.length == 0) {
-        alert("Name must not be empty!");
-      } else {
-        dispatch(
-          inventoryActions.requestAssignSBAssetToUser(user, selectedItem[0].id)
-        );
-      }
-    };
-
     return (
       <div key={idx}>
         <div>{item.itemName}</div>
@@ -57,21 +41,22 @@ const InventoryItem = () => {
         <div>{item.supplier}</div>
         <div>{item.purchaseDate}</div>
         <div>{item.ownerId}</div>
-        <select value={user} ref={userRef} onClick={assignAsset}>
-          {allUsers.map(({ name }, index) => (
-            <option value={name}>{name}</option>
-          ))}
-        </select>
-
-        <button className="reset-button"> Assign to user</button>
-        <form method="post" action="/tryquest">
-          <input type="hidden" id="hero" name="heroName" />
-          <input type="hidden" id="quest" name="questName" />
-          <button type="submit">Try Quest</button>
-        </form>
       </div>
     );
   });
+
+  const assignAsset = () => {
+    const user = userRef.current?.value;
+    //Define UserID and assign to selectedItem indicating its ID
+    //requestAssignSBAssetToUser
+    if (user === undefined || user.length == 0) {
+      alert("Name must not be empty!");
+    } else {
+      dispatch(
+        inventoryActions.requestAssignSBAssetToUser(user, selectedItem[0].id)
+      );
+    }
+  };
 
   return (
     <div>
@@ -80,6 +65,13 @@ const InventoryItem = () => {
           <h2>Specific Inventory Item</h2>
         </header>
         <div>{res}</div>
+        <select value={user} ref={userRef} onClick={assignAsset}>
+          {allUsers.map(({ name }, index) => (
+            <option value={name}>{name}</option>
+          ))}
+        </select>
+
+        <button className="reset-button"> Assign to user</button>
       </div>
     </div>
   );
