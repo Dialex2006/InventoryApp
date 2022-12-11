@@ -18,10 +18,6 @@ const InventoryItem = () => {
   );
   console.log("Selected item: ", assetsItems);
 
-  const [category, setCategory] = useState("unknown");
-  const [location, setLocation] = useState("unknown");
-  const [employee, setEmployee] = useState("unknown");
-
   const res = assetsItems.map((item, idx) => {
     console.log("Inventory page");
     console.log(assetsItems);
