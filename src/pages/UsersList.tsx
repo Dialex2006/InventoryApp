@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IAuthState } from "../models/reducers/auth";
 import * as authActions from "../store/actions/authActions";
-import * as inventoryActions from "../store/actions/inventoryActions";
 import { ISBUser } from "../models/api/auth";
 import { ISBInventoryAssetItem } from "../models/api/inventory";
 
@@ -24,7 +23,6 @@ const UsersList = () => {
 
   console.log("UsersList page");
   const nameRef = React.useRef<HTMLTextAreaElement>(null);
-  const name = nameRef.current?.value;
 
   const allUsers = useSelector((state: IAuth) => state.authReducer.allUsers);
   console.log("All Users array: ", allUsers);
@@ -34,9 +32,11 @@ const UsersList = () => {
   const employeeRef = React.useRef<HTMLSelectElement>(null);
 
   const addUser = () => {
-    if (name === undefined) {
+    const name = nameRef.current?.value;
+    if (name === undefined || name.length == 0) {
       alert("Name must not be empty!");
     } else {
+      console.log(`users list username: ${name}`);
       dispatch(authActions.requestAddUser(name));
     }
   };

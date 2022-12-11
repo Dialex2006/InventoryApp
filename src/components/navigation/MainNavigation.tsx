@@ -24,6 +24,13 @@ const MainNavigation = () => {
     }
   }, [routerLocation2]);
 
+  const routerLocation3 = useLocation();
+  useEffect(() => {
+    if (routerLocation.pathname === "/assets/number/") {
+      dispatch(inventoryActions.requestSBAssetByNumber("HH7777GHJ"));
+    }
+  }, [routerLocation3]);
+
   return (
     <header className="header">
       <h2>Inventory Management App</h2>

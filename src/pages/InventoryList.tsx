@@ -37,6 +37,8 @@ const InventoryList = () => {
     setEmployee("unknown");
   };
 
+  console.log(assetsItems.map);
+
   const res = assetsItems.map((item, idx) => {
     console.log("Inventory page");
     console.log(assetsItems);
@@ -47,7 +49,9 @@ const InventoryList = () => {
     )
       return (
         <tr key={idx}>
-          <td>{item.itemName}</td>
+          <td>
+            <a href={"assets/number/"}>{item.itemName}</a>
+          </td>
           <td>{item.serialNumber}</td>
           <td>{item.supplier}</td>
           <td>{item.purchaseDate}</td>

@@ -5,6 +5,7 @@ import { IAuthState } from "./models/reducers/auth";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import UsersList from "./pages/UsersList";
+import InventoryItem from "./pages/InventoryItem";
 import MainNavigation from "./components/navigation/MainNavigation";
 import AddAsset from "./pages/AddAsset";
 
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/users">
           <UsersList />
+        </Route>
+        <Route path="/assets/number/">
+          <InventoryItem />
         </Route>
       </Switch>
     </div>
