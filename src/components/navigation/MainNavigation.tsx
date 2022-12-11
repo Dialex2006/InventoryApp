@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 import * as inventoryActions from "../../store/actions/inventoryActions";
+import * as authActions from "../../store/actions/authActions";
 
 import "./MainNavigation.css";
 
@@ -12,9 +13,16 @@ const MainNavigation = () => {
   const routerLocation = useLocation();
   useEffect(() => {
     if (routerLocation.pathname === "/inventory") {
-      dispatch(inventoryActions.requestInventory());
+      dispatch(inventoryActions.requestSBInventory());
     }
   }, [routerLocation]);
+
+  const routerLocation2 = useLocation();
+  useEffect(() => {
+    if (routerLocation.pathname === "/users") {
+      dispatch(authActions.queryAllUsers());
+    }
+  }, [routerLocation2]);
 
   return (
     <header className="header">

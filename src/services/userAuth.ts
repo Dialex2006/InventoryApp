@@ -1,4 +1,5 @@
 import { apiClient } from "./client";
+import { sbApiClient } from "./client";
 import { AxiosResponse } from "axios";
 import {
   ILoginResponse,
@@ -25,17 +26,17 @@ export function registerUser(
 // Spring Boot service functions
 
 export function getAllUsers(): Promise<AxiosResponse<ISBAllUsersResponse>> {
-  return apiClient.get(ApiConfig.ALL_USERS);
+  return sbApiClient.get(ApiConfig.ALL_USERS);
 }
 
 export function getUserByName(
   username: string
 ): Promise<AxiosResponse<ISBUserResponse>> {
-  return apiClient.get(ApiConfig.USER(username));
+  return sbApiClient.get(ApiConfig.USER(username));
 }
 
 export function addUserByName(
   username: string
 ): Promise<AxiosResponse<ISBUserGenericResponse>> {
-  return apiClient.post(ApiConfig.ADD_USER, { userName: username });
+  return sbApiClient.post(ApiConfig.ADD_USER, { userName: username });
 }

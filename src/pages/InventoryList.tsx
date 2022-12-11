@@ -39,7 +39,7 @@ const InventoryList = () => {
 
   const res = assetsItems.map((item, idx) => {
     console.log("Inventory page");
-    console.log(item.itemName);
+    console.log(assetsItems);
     if (
       (category === item.itemName || category === "unknown") &&
       (location === item.itemName || location === "unknown") &&
@@ -48,10 +48,10 @@ const InventoryList = () => {
       return (
         <tr key={idx}>
           <td>{item.itemName}</td>
-          <td>{item.itemName}</td>
-          <td>{item.itemName}</td>
-          <td>{item.itemName}</td>
-          <td>{item.itemName}</td>
+          <td>{item.serialNumber}</td>
+          <td>{item.supplier}</td>
+          <td>{item.purchaseDate}</td>
+          <td>{item.ownerId}</td>
           <td>{item.itemName}</td>
           <td>{item.itemName}</td>
         </tr>
@@ -118,11 +118,11 @@ const InventoryList = () => {
             <tr>
               <th>Device name</th>
               <th>Serial</th>
-              <th>Type</th>
-              <th>User</th>
-              <th>Status</th>
+              <th>Supplier</th>
               <th>Date of purchase</th>
-              <th>Location</th>
+              <th>Owner</th>
+              <th>N/A</th>
+              <th>N/A</th>
             </tr>
           </thead>
           <tbody>{res}</tbody>
