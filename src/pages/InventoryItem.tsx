@@ -36,7 +36,7 @@ const InventoryItem = () => {
   const assignAsset = () => {
     const user = userRef.current?.value;
     //Define UserID and assign to selectedItem indicating its ID
-    if (user === undefined || user.length == 0) {
+    if (user === undefined || user.length === 0) {
       alert("Name must not be empty!");
     } else {
       dispatch(

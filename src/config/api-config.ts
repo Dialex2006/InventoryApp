@@ -6,7 +6,8 @@ const ApiConfig = {
   BASE_URL:
     "https://inventoryapp-6e44e-default-rtdb.europe-west1.firebasedatabase.app",
   // TODO: change address after a proper dockerization
-  BASE_SPRINGBOOT_URL: "http://localhost:8080",// "http://inventoryappspringboot-env-1.eba-pp2xpujd.eu-north-1.elasticbeanstalk.com",
+  BASE_SPRINGBOOT_URL:
+    "http://inventoryappspringboot-env-1.eba-pp2xpujd.eu-north-1.elasticbeanstalk.com",
   // GET
   // TODO: remove firebase api
   LOGIN: "/authenticationData.json",

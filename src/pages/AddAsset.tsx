@@ -28,9 +28,9 @@ const AddAsset = () => {
     console.log("Serial Number value: ", serialRef.current?.value);
 
     if (
-      nameRef.current?.value != undefined &&
-      serialRef.current?.value != undefined &&
-      supplierRef.current?.value != undefined
+      nameRef.current?.value !== undefined &&
+      serialRef.current?.value !== undefined &&
+      supplierRef.current?.value !== undefined
     ) {
       newAsset.assetName = nameRef.current?.value;
       newAsset.serialNumber = serialRef.current?.value;
@@ -46,10 +46,6 @@ const AddAsset = () => {
       console.log("Supplier: ", supplierRef.current?.value);
       alert("Some inputs can not be empty!");
     }
-
-    const supplier = supplierRef.current?.value;
-    const name = nameRef.current?.value;
-    const serial = serialRef.current?.value;
   };
 
   return (
