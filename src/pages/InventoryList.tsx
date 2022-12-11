@@ -14,6 +14,7 @@ const InventoryList = () => {
   const assetsItems = useSelector(
     (state: IInventory) => state.inventoryReducer.sbAssets
   );
+
   const supplierRef = React.useRef<HTMLSelectElement>(null);
   const [supplier, setCategory] = useState("unknown");
 
