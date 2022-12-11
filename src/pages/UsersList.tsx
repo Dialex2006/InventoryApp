@@ -33,10 +33,9 @@ const UsersList = () => {
 
   const addUser = () => {
     const name = nameRef.current?.value;
-    if (name === undefined || name.length == 0) {
+    if (name === undefined || name.length === 0) {
       alert("Name must not be empty!");
     } else {
-      console.log(`users list username: ${name}`);
       dispatch(authActions.requestAddUser(name));
     }
   };
@@ -64,7 +63,7 @@ const UsersList = () => {
           <span className="simple-text">Add a new user &nbsp;&nbsp;&nbsp;</span>
           <span>
             <textarea
-              className="textForm"
+              className="textField"
               placeholder="Name"
               id="text"
               ref={nameRef}
