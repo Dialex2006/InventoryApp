@@ -38,6 +38,5 @@ export function getUserByName(
 export function addUserByName(
   username: string
 ): Promise<AxiosResponse<ISBUserGenericResponse>> {
-  console.log(`#dbg username:${username}`);
   return sbApiClient.post(ApiConfig.ADD_USER, { username });
 }

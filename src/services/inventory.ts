@@ -52,9 +52,7 @@ export function assignSBAssetToUser(
   assetId: number
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
   return sbApiClient.post(ApiConfig.ASSIGN_SB_ASSETS, {
-    assignData: {
-      username: username,
-      id: assetId,
-    },
+    username: username,
+    id: assetId,
   });
 }

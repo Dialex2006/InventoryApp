@@ -105,7 +105,7 @@ export function requestSBAssetByName(assetName: string) {
   };
 }
 
-export function onSBAssetByNameResponse(response: ISBInventoryAssetResponse) {
+export function onSBAssetByNameResponse(response: ISBInventoryResponse) {
   return {
     type: types.SB_NAME_ASSET_RESPONSE,
     response,
