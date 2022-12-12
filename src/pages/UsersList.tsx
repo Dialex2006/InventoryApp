@@ -63,7 +63,7 @@ const UsersList = () => {
           <span className="simple-text">Add a new user &nbsp;&nbsp;&nbsp;</span>
           <span>
             <textarea
-              className="textField"
+              className="inputUser"
               placeholder="Name"
               id="text"
               ref={nameRef}
