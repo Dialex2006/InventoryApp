@@ -25,6 +25,7 @@ const initialState: IInventoryState = {
   isSBAssetAssigned: false,
   usernameToAssignAsset: "",
   assetIdToAssign: 0,
+  isAssetDeleted: false,
 };
 
 export const inventoryReducer = createReducer(initialState, {
@@ -147,6 +148,34 @@ export const inventoryReducer = createReducer(initialState, {
     return {
       ...state,
       isSBAssetAssigned: action.status === "ok",
+    };
+  },
+  [types.SB_DELETE_ASSET_BY_ID_REQUEST](state: IInventoryState) {
+    return {
+      ...state,
+    };
+  },
+  [types.SB_DELETE_ASSET_BY_ID_RESPONSE](
+    state: IInventoryState,
+    action: ISBInventoryGenericResponseState
+  ) {
+    return {
+      ...state,
+      isAssetDeleted: action.status === "ok",
+    };
+  },
+  [types.SB_DELETE_ASSET_BY_NUMBER_REQUEST](state: IInventoryState) {
+    return {
+      ...state,
+    };
+  },
+  [types.SB_DELETE_ASSET_BY_NUMBER_RESPONSE](
+    state: IInventoryState,
+    action: ISBInventoryGenericResponseState
+  ) {
+    return {
+      ...state,
+      isAssetDeleted: action.status === "ok",
     };
   },
 });

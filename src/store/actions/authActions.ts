@@ -103,7 +103,6 @@ export function onUserByNameResponse(response: ISBUserResponse) {
 }
 
 export function requestAddUser(username: string) {
-  console.log(`action username: ${username}`);
   return {
     type: types.ADD_USER_REQUEST,
     username,

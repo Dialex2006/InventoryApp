@@ -11,6 +11,8 @@ import * as inventoryActions from "../actions/inventoryActions";
 import {
   IAddAssetRequestState,
   IInventoryRequestState,
+  ISBDeleteAssetByIdRequestState,
+  ISBDeleteAssetByNumberRequestState,
   ISBInventoryAddAssetsRequestState,
   ISBInventoryAssignAssetRequestState,
   ISBInventoryNamedAssetsRequestState,
@@ -28,6 +30,8 @@ import {
   addAsset,
   addSBAsset,
   assignSBAssetToUser,
+  deleteSBAssetById,
+  deleteSBAssetBySerialNumber,
   getInventory,
   getSBAssetsByName,
   getSBAssetsByNumber,
@@ -43,7 +47,6 @@ export function* inventoryAsync(action: IInventoryRequestState) {
     setTimeout(() => {
       alert(`Inventory retrieve failed: the response is null`);
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onInventoryResponse(response.data));
   }
@@ -62,7 +65,6 @@ export function* addAssetAsync(action: IAddAssetRequestState) {
     setTimeout(() => {
       alert(`Add asset failed: the response is null`);
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onAddAssetResponse());
   }
@@ -78,7 +80,6 @@ export function* sbInventoryAsync(action: ISBInventoryRequestState) {
     setTimeout(() => {
       alert(`Inventory retrieve failed: the response is null`);
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onSBInventoryResponse(response.data));
   }
@@ -96,9 +97,10 @@ export function* sbAssetByNameAsync(
 
   if (response === undefined) {
     setTimeout(() => {
-      alert(`Get asset by name failed: the response is null`);
+      alert(
+        `Get asset by name ${action.assetName} failed: the response is null`
+      );
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onSBAssetByNameResponse(response.data));
   }
@@ -116,9 +118,10 @@ export function* sbAssetByNumberAsync(
 
   if (response === undefined) {
     setTimeout(() => {
-      alert(`Get asset by serial number failed: the response is null`);
+      alert(
+        `Get asset by serial number ${action.serialNumber} failed: the response is null`
+      );
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onSBAssetByNumberResponse(response.data));
   }
@@ -134,9 +137,10 @@ export function* sbAssetAddAsync(action: ISBInventoryAddAssetsRequestState) {
 
   if (response === undefined) {
     setTimeout(() => {
-      alert(`Add sb asset failed: the response is null`);
+      alert(
+        `Add sb asset with serial number ${action.asset.serialNumber} failed: the response is null`
+      );
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onAddSBAssetResponse(response.data));
   }
@@ -155,11 +159,46 @@ export function* sbAssetAssignToUserAsync(
 
   if (response === undefined) {
     setTimeout(() => {
-      alert(`Assign sb asset failed: the response is null`);
+      alert(`Assign sb asset ${action.itemId} failed: the response is null`);
     }, 200);
-    return;
   } else {
     yield put(inventoryActions.onAssignSBAssetToUserResponse(response.data));
   }
   yield put(inventoryActions.disableLoader());
+}
+
+export function* sbDeleteAssetByIdAsync(
+  action: ISBDeleteAssetByIdRequestState
+) {
+  const response: AxiosResponse<ISBInventoryGenericResponse> = yield call(
+    deleteSBAssetById,
+    action.assetId
+  );
+
+  if (response === undefined) {
+    setTimeout(() => {
+      alert(`Delete sb asset ${action.assetId} failed: the response is null`);
+    }, 200);
+  } else {
+    yield put(inventoryActions.onDeleteSBAssetByIdResponse(response.data));
+  }
+}
+
+export function* sbDeleteAssetByNumberAsync(
+  action: ISBDeleteAssetByNumberRequestState
+) {
+  const response: AxiosResponse<ISBInventoryGenericResponse> = yield call(
+    deleteSBAssetBySerialNumber,
+    action.serialNumber
+  );
+
+  if (response === undefined) {
+    setTimeout(() => {
+      alert(
+        `Delete sb asset with serial number ${action.serialNumber} failed: the response is null`
+      );
+    }, 200);
+  } else {
+    yield put(inventoryActions.onDeleteSBAssetByNumberResponse(response.data));
+  }
 }

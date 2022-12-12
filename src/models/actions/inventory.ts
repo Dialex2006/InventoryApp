@@ -56,6 +56,16 @@ export interface ISBInventoryAssignAssetRequestState {
   itemId: number;
 }
 
+export interface ISBDeleteAssetByIdRequestState {
+  type: string;
+  assetId: number;
+}
+
+export interface ISBDeleteAssetByNumberRequestState {
+  type: string;
+  serialNumber: string;
+}
+
 export interface ISBInventoryResponseState {
   type: string;
   response: ISBInventoryResponse;
