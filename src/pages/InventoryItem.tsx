@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { IInventoryState } from "../models/reducers/inventory";
 import * as inventoryActions from "../store/actions/inventoryActions";
 import { IAuthState } from "../models/reducers/auth";
@@ -19,6 +20,7 @@ interface IAuth {
 
 const InventoryItem = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const assetsItems = useSelector(
     (state: IInventory) => state.inventoryReducer.sbAssets
   );
@@ -41,6 +43,7 @@ const InventoryItem = () => {
     } else {
       console.log("USER: ", user);
       dispatch(inventoryActions.requestAssignSBAssetToUser(user, id));
+      history.push("/inventory");
     }
   };
 
@@ -50,16 +53,11 @@ const InventoryItem = () => {
         <div className="items">Item: {item.itemName}</div>
         <div>Serial Number: {item.serialNumber}</div>
         <div>Supplier: {item.supplier}</div>
-        <select ref={userRef} placeholder="Select user">
-          {allUsers.map(({ name }, index) => (
-            <option value={name}>{name}</option>
-          ))}
-        </select>
         <form action="/assign">
           <input type="hidden" id="serial" name={item.serialNumber} />
           <button className="reset-button" onClick={() => assignAsset(item.id)}>
             {" "}
-            Assign to user
+            Assign to selected user
           </button>
         </form>
       </div>
@@ -72,6 +70,15 @@ const InventoryItem = () => {
         <header className="Inv-header">
           <h2>Assign Inventory Items to Users</h2>
         </header>
+        <span className="simple-text">
+          Select User name user &nbsp;&nbsp;&nbsp;
+        </span>
+        <select className="selection" ref={userRef} placeholder="Select user">
+          {allUsers.map(({ name }, index) => (
+            <option value={name}>{name}</option>
+          ))}
+          <option value={"Unassign"}>{"Unassign"}</option>
+        </select>
         <div>{res}</div>
       </div>
     </div>

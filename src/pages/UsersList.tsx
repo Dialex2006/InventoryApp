@@ -44,7 +44,7 @@ const UsersList = () => {
     console.log("Users: ", user);
     return (
       <tr key={idx}>
-        <td>{user.id}</td>
+        <td>{user.userId}</td>
         <td>{user.name}</td>
         <td>{user.status}</td>
         <td>{user.location}</td>

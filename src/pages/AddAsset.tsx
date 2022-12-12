@@ -39,7 +39,7 @@ const AddAsset = () => {
       console.log("Asset: ", newAsset);
 
       dispatch(inventoryActions.requestAddSBAsset(newAsset));
-      history.push("/");
+      history.push("/inventory");
     } else {
       console.log("Name: ", nameRef.current?.value);
       console.log("Serial: ", serialRef.current?.value);

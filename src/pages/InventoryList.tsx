@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { IInventoryState } from "../models/reducers/inventory";
 
 import React from "react";
@@ -15,6 +16,7 @@ const InventoryList = () => {
     (state: IInventory) => state.inventoryReducer.sbAssets
   );
 
+  const history = useHistory();
   const supplierRef = React.useRef<HTMLSelectElement>(null);
   const [supplier, setCategory] = useState("unknown");
 
@@ -28,6 +30,15 @@ const InventoryList = () => {
 
   console.log(assetsItems.map);
 
+  const removeAsset = (assetId: any) => {
+    //Define UserID and assign to selectedItem indicating its ID
+    if (assetId != undefined) {
+      console.log("Deleting the item ");
+      //dispatch(inventoryActions.requestAssignSBAssetToUser(user, id));
+      history.push("/inventory");
+    }
+  };
+
   const res = assetsItems.map((item, idx) => {
     console.log("Inventory page");
     console.log(assetsItems);
@@ -35,12 +46,26 @@ const InventoryList = () => {
       return (
         <tr key={idx}>
           <td>
-            <a href={"assets/number/"}>{item.itemName}</a>
+            <Link
+              to="/assets/number"
+              onClick={() => history.push("/assets/number")}
+              className="nav-link"
+            >
+              {item.itemName}
+            </Link>
           </td>
           <td>{item.serialNumber}</td>
           <td>{item.supplier}</td>
           <td>{item.purchaseDate}</td>
           <td>{item.ownerId}</td>
+          <td>
+            <button
+              className="reset-button"
+              onClick={() => removeAsset(item.id)}
+            >
+              Remove the item
+            </button>
+          </td>
         </tr>
       );
   });
@@ -80,6 +105,7 @@ const InventoryList = () => {
               <th>Supplier</th>
               <th>Date of purchase</th>
               <th>Owner</th>
+              <th>Delete assets</th>
             </tr>
           </thead>
           <tbody>{res}</tbody>
