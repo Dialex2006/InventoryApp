@@ -33,15 +33,14 @@ const InventoryItem = () => {
   const userRef = React.useRef<HTMLSelectElement>(null);
   const [user, setUser] = useState("unknown");
 
-  const assignAsset = () => {
+  const assignAsset = (id: any) => {
     const user = userRef.current?.value;
     //Define UserID and assign to selectedItem indicating its ID
     if (user === undefined || user.length === 0) {
       alert("Name must not be empty!");
     } else {
-      dispatch(
-        inventoryActions.requestAssignSBAssetToUser(user, selectedItem[0].id)
-      );
+      console.log("USER: ", user);
+      dispatch(inventoryActions.requestAssignSBAssetToUser(user, id));
     }
   };
 
@@ -51,14 +50,14 @@ const InventoryItem = () => {
         <div className="items">Item: {item.itemName}</div>
         <div>Serial Number: {item.serialNumber}</div>
         <div>Supplier: {item.supplier}</div>
-        <select value={user} ref={userRef} placeholder="Select user">
+        <select ref={userRef} placeholder="Select user">
           {allUsers.map(({ name }, index) => (
             <option value={name}>{name}</option>
           ))}
         </select>
         <form action="/assign">
           <input type="hidden" id="serial" name={item.serialNumber} />
-          <button className="reset-button" onClick={assignAsset}>
+          <button className="reset-button" onClick={() => assignAsset(item.id)}>
             {" "}
             Assign to user
           </button>
