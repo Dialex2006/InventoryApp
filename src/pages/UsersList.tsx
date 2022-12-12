@@ -44,6 +44,7 @@ const UsersList = () => {
     console.log("Users: ", user);
     return (
       <tr key={idx}>
+        <td>{user.id}</td>
         <td>{user.name}</td>
         <td>{user.status}</td>
         <td>{user.location}</td>
@@ -76,6 +77,7 @@ const UsersList = () => {
         <table>
           <thead>
             <tr>
+              <th>User</th>
               <th>Name</th>
               <th>Status</th>
               <th>Location</th>

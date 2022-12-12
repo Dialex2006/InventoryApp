@@ -57,7 +57,6 @@ const AddAsset = () => {
             <option value="Atea">Atea</option>
             <option value="Verkkokauppa">Verkkokauppa</option>
             <option value="Dustin">Dustin</option>
-            <option value="Jyväskylä">Jyväskylä</option>
           </select>
         </div>
         <div>
