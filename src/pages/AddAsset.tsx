@@ -39,7 +39,7 @@ const AddAsset = () => {
       console.log("Asset: ", newAsset);
 
       dispatch(inventoryActions.requestAddSBAsset(newAsset));
-      history.push("/");
+      history.push("/inventory");
     } else {
       console.log("Name: ", nameRef.current?.value);
       console.log("Serial: ", serialRef.current?.value);
@@ -57,7 +57,6 @@ const AddAsset = () => {
             <option value="Atea">Atea</option>
             <option value="Verkkokauppa">Verkkokauppa</option>
             <option value="Dustin">Dustin</option>
-            <option value="Jyväskylä">Jyväskylä</option>
           </select>
         </div>
         <div>
@@ -76,7 +75,20 @@ const AddAsset = () => {
             ref={serialRef}
           ></textarea>
         </div>
-
+        <button
+          onClick={() => {
+            dispatch(inventoryActions.requestDeleteSBAssetById(5));
+          }}
+        >
+          TEST DELETION BY ID
+        </button>
+        <button
+          onClick={() => {
+            dispatch(inventoryActions.requestDeleteSBAssetByNumber("33333333"));
+          }}
+        >
+          TEST DELETION BY SERIAL NUMBER
+        </button>
         <button className="button">Submit information</button>
       </form>
     </div>

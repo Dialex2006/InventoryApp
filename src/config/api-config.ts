@@ -27,6 +27,9 @@ const ApiConfig = {
   ADD_USER: "/users/add",
   ADD_SB_ASSET: "/assets/add",
   ASSIGN_SB_ASSETS: "/assets/assign",
+  // DELETE
+  DELETE_ASSET_BY_ID: "assets/delete/id/",
+  DELETE_ASSET_BY_NUMBER: "assets/delete/number/",
 };
 
 export default ApiConfig;

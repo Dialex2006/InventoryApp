@@ -26,8 +26,8 @@ const MainNavigation = () => {
 
   const routerLocation3 = useLocation();
   useEffect(() => {
-    if (routerLocation.pathname === "/assets/number/") {
-      //dispatch(inventoryActions.requestSBAssetByNumber("HH7777GHJ"));
+    if (routerLocation.pathname === "/assets/number") {
+      dispatch(inventoryActions.requestSBAssetByName("Lenovo"));
       dispatch(authActions.queryAllUsers());
     }
   }, [routerLocation3]);

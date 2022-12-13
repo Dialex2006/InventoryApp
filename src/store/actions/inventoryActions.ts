@@ -156,3 +156,35 @@ export function onAssignSBAssetToUserResponse(
     response,
   };
 }
+
+export function requestDeleteSBAssetById(assetId: number) {
+  return {
+    type: types.SB_DELETE_ASSET_BY_ID_REQUEST,
+    assetId,
+  };
+}
+
+export function onDeleteSBAssetByIdResponse(
+  response: ISBInventoryGenericResponse
+) {
+  return {
+    type: types.SB_DELETE_ASSET_BY_ID_RESPONSE,
+    response,
+  };
+}
+
+export function requestDeleteSBAssetByNumber(serialNumber: string) {
+  return {
+    type: types.SB_DELETE_ASSET_BY_NUMBER_REQUEST,
+    serialNumber,
+  };
+}
+
+export function onDeleteSBAssetByNumberResponse(
+  response: ISBInventoryGenericResponse
+) {
+  return {
+    type: types.SB_DELETE_ASSET_BY_NUMBER_RESPONSE,
+    response,
+  };
+}

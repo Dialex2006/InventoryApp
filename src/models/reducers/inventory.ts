@@ -11,4 +11,5 @@ export interface IInventoryState {
   isSBAssetAssigned: boolean;
   usernameToAssignAsset: string;
   assetIdToAssign: number;
+  isAssetDeleted: boolean;
 }

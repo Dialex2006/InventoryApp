@@ -16,6 +16,8 @@ import {
   sbAssetAssignToUserAsync,
   sbAssetByNameAsync,
   sbAssetByNumberAsync,
+  sbDeleteAssetByIdAsync,
+  sbDeleteAssetByNumberAsync,
   sbInventoryAsync,
 } from "./inventorySaga";
 
@@ -35,5 +37,10 @@ export default function* watch() {
     takeEvery(types.SB_NUMBER_ASSET_REQUEST, sbAssetByNumberAsync),
     takeEvery(types.SB_ADD_ASSET_REQUEST, sbAssetAddAsync),
     takeEvery(types.SB_ASSIGN_ASSET_TO_USER_REQUEST, sbAssetAssignToUserAsync),
+    takeEvery(types.SB_DELETE_ASSET_BY_ID_REQUEST, sbDeleteAssetByIdAsync),
+    takeEvery(
+      types.SB_DELETE_ASSET_BY_NUMBER_REQUEST,
+      sbDeleteAssetByNumberAsync
+    ),
   ]);
 }

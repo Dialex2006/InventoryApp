@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { IInventoryState } from "../models/reducers/inventory";
 import * as inventoryActions from "../store/actions/inventoryActions";
 import { IAuthState } from "../models/reducers/auth";
@@ -19,6 +20,7 @@ interface IAuth {
 
 const InventoryItem = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const assetsItems = useSelector(
     (state: IInventory) => state.inventoryReducer.sbAssets
   );
@@ -33,15 +35,15 @@ const InventoryItem = () => {
   const userRef = React.useRef<HTMLSelectElement>(null);
   const [user, setUser] = useState("unknown");
 
-  const assignAsset = () => {
+  const assignAsset = (id: any) => {
     const user = userRef.current?.value;
     //Define UserID and assign to selectedItem indicating its ID
     if (user === undefined || user.length === 0) {
       alert("Name must not be empty!");
     } else {
-      dispatch(
-        inventoryActions.requestAssignSBAssetToUser(user, selectedItem[0].id)
-      );
+      console.log("USER: ", user);
+      dispatch(inventoryActions.requestAssignSBAssetToUser(user, id));
+      history.push("/inventory");
     }
   };
 
@@ -51,16 +53,11 @@ const InventoryItem = () => {
         <div className="items">Item: {item.itemName}</div>
         <div>Serial Number: {item.serialNumber}</div>
         <div>Supplier: {item.supplier}</div>
-        <select value={user} ref={userRef} placeholder="Select user">
-          {allUsers.map(({ name }, index) => (
-            <option value={name}>{name}</option>
-          ))}
-        </select>
         <form action="/assign">
           <input type="hidden" id="serial" name={item.serialNumber} />
-          <button className="reset-button" onClick={assignAsset}>
+          <button className="reset-button" onClick={() => assignAsset(item.id)}>
             {" "}
-            Assign to user
+            Assign to selected user
           </button>
         </form>
       </div>
@@ -73,6 +70,15 @@ const InventoryItem = () => {
         <header className="Inv-header">
           <h2>Assign Inventory Items to Users</h2>
         </header>
+        <span className="simple-text">
+          Select User name user &nbsp;&nbsp;&nbsp;
+        </span>
+        <select className="selection" ref={userRef} placeholder="Select user">
+          {allUsers.map(({ name }, index) => (
+            <option value={name}>{name}</option>
+          ))}
+          <option value={"Unassign"}>{"Unassign"}</option>
+        </select>
         <div>{res}</div>
       </div>
     </div>

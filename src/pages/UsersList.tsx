@@ -44,6 +44,7 @@ const UsersList = () => {
     console.log("Users: ", user);
     return (
       <tr key={idx}>
+        <td>{user.userId}</td>
         <td>{user.name}</td>
         <td>{user.status}</td>
         <td>{user.location}</td>
@@ -63,7 +64,7 @@ const UsersList = () => {
           <span className="simple-text">Add a new user &nbsp;&nbsp;&nbsp;</span>
           <span>
             <textarea
-              className="textField"
+              className="inputUser"
               placeholder="Name"
               id="text"
               ref={nameRef}
@@ -76,6 +77,7 @@ const UsersList = () => {
         <table>
           <thead>
             <tr>
+              <th>User</th>
               <th>Name</th>
               <th>Status</th>
               <th>Location</th>
