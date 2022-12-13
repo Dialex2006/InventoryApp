@@ -2,16 +2,19 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { IInventoryState } from "../models/reducers/inventory";
+import { useDispatch } from "react-redux";
 
 import React from "react";
 
 import "../components/Components.css";
+import * as inventoryActions from "../store/actions/inventoryActions";
 
 interface IInventory {
   inventoryReducer: IInventoryState;
 }
 
 const InventoryList = () => {
+  const dispatch = useDispatch();
   const assetsItems = useSelector(
     (state: IInventory) => state.inventoryReducer.sbAssets
   );
@@ -28,20 +31,16 @@ const InventoryList = () => {
     setCategory("unknown");
   };
 
-  console.log(assetsItems.map);
-
   const removeAsset = (assetId: any) => {
     //Define UserID and assign to selectedItem indicating its ID
-    if (assetId != undefined) {
-      console.log("Deleting the item ");
-      //dispatch(inventoryActions.requestAssignSBAssetToUser(user, id));
+    if (assetId !== undefined) {
+      console.log(`Deleting item with id ${assetId}`);
+      dispatch(inventoryActions.requestDeleteSBAssetById(assetId));
       history.push("/inventory");
     }
   };
 
   const res = assetsItems.map((item, idx) => {
-    console.log("Inventory page");
-    console.log(assetsItems);
     if (supplier === item.supplier || supplier === "unknown")
       return (
         <tr key={idx}>

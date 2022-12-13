@@ -75,7 +75,7 @@ const AddAsset = () => {
             ref={serialRef}
           ></textarea>
         </div>
-        {/* <button
+        <button
           onClick={() => {
             dispatch(inventoryActions.requestDeleteSBAssetById(5));
           }}
@@ -88,7 +88,7 @@ const AddAsset = () => {
           }}
         >
           TEST DELETION BY SERIAL NUMBER
-        </button> */}
+        </button>
         <button className="button">Submit information</button>
       </form>
     </div>

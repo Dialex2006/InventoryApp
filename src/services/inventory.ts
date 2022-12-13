@@ -60,11 +60,15 @@ export function assignSBAssetToUser(
 export function deleteSBAssetById(
   assetId: number
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
-  return sbApiClient.post(ApiConfig.DELETE_ASSET_BY_ID(assetId));
+  return sbApiClient.delete(ApiConfig.DELETE_ASSET_BY_ID, {
+    data: { id: assetId },
+  });
 }
 
 export function deleteSBAssetBySerialNumber(
   serialNumber: string
 ): Promise<AxiosResponse<ISBInventoryGenericResponse>> {
-  return sbApiClient.post(ApiConfig.DELETE_ASSET_BY_NUMBER(serialNumber));
+  return sbApiClient.delete(ApiConfig.DELETE_ASSET_BY_NUMBER, {
+    data: { serialNumber },
+  });
 }

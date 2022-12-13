@@ -28,9 +28,8 @@ const ApiConfig = {
   ADD_SB_ASSET: "/assets/add",
   ASSIGN_SB_ASSETS: "/assets/assign",
   // DELETE
-  DELETE_ASSET_BY_ID: (id: number) => `assets/delete/id/${id}`,
-  DELETE_ASSET_BY_NUMBER: (serialNumber: string) =>
-    `assets/delete/number/${serialNumber}`,
+  DELETE_ASSET_BY_ID: "assets/delete/id/",
+  DELETE_ASSET_BY_NUMBER: "assets/delete/number/",
 };
 
 export default ApiConfig;
